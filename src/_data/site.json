@@ -3,7 +3,8 @@
   "tagline": "Fine Art & Curious Antiques",
   "description": "A curated collection of fine art, antiques, and wonderfully unexpected finds in the heart of Lambertville, NJ.",
   "address": {
-    "street": "42 Bridge Street",
+    "locatedWithin": "Darberry Antiques",
+    "street": "80 Lambert Ln",
     "city": "Lambertville",
     "state": "NJ",
     "zip": "08530"
@@ -19,5 +20,10 @@
   ],
   "social": {
     "instagram": "https://www.instagram.com/buckscountycuriartsity"
+  },
+  "maps": {
+    "apple": "https://maps.apple.com/place?q=Darberry%27s%20Antiques&auid=1397877729542252910&address=80%20Lambert%20Ln,%20Lambertville,%20NJ%20%2008530,%20United%20States&ll=40.3684354,-74.94773",
+    "google": "https://www.google.com/maps/place/?q=place_id:ChIJGSeNGRL_w4kRX_IX-uurq0M",
+    "waze": "https://waze.com/ul?ll=40.3684354,-74.94773&navigate=yes"
   }
 }
