@@ -7,6 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title or site.name }}</title>
   <meta name="description" content="{{ description or site.description }}">
+
+  {# Favicon — SVG for modern browsers, PNG fallback. #}
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/images/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/favicon-180.png">
+
+  {# Open Graph / Twitter — link previews when shared. Absolute once site.url is set. #}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ title or site.name }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title or site.name }}">
+  <meta name="twitter:description" content="{{ description or site.description }}">
+  <meta name="twitter:image" content="{{ site.url }}/images/og-image.png">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="stylesheet" href="/css/style.css">
   {# Structured data for search engines — driven entirely from _data/site.json. #}
