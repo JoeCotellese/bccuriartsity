@@ -12,11 +12,15 @@
   "phone": "(609) 555-0142",
   "email": "hello@bccuriartsity.com",
   "hours": [
-    { "days": "Thursday - Sunday", "time": "11:00 AM - 6:00 PM" },
-    { "days": "Monday - Wednesday", "time": "Closed" }
+    { "days": "Sunday", "time": "11:00 AM - 5:00 PM" },
+    { "days": "Monday", "time": "11:00 AM - 4:00 PM" },
+    { "days": "Tuesday - Thursday", "time": "Closed" },
+    { "days": "Friday", "time": "11:00 AM - 4:00 PM" },
+    { "days": "Saturday", "time": "11:00 AM - 5:00 PM" }
   ],
   "hoursSchema": [
-    { "days": ["Thursday", "Friday", "Saturday", "Sunday"], "opens": "11:00", "closes": "18:00" }
+    { "days": ["Sunday", "Saturday"], "opens": "11:00", "closes": "17:00" },
+    { "days": ["Monday", "Friday"], "opens": "11:00", "closes": "16:00" }
   ],
   "social": {
     "instagram": "https://www.instagram.com/buckscountycuriartsity"
