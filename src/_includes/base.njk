@@ -11,6 +11,40 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500;1,9..144,900&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  {# Structured data for search engines — driven entirely from _data/site.json. #}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": {{ site.name | dump | safe }},
+    "description": {{ site.description | dump | safe }},
+    "telephone": {{ site.phone | dump | safe }},
+    "email": {{ site.email | dump | safe }},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": {{ site.address.street | dump | safe }},
+      "addressLocality": {{ site.address.city | dump | safe }},
+      "addressRegion": {{ site.address.state | dump | safe }},
+      "postalCode": {{ site.address.zip | dump | safe }},
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      {%- for spec in site.hoursSchema %}
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": {{ spec.days | dump | safe }},
+        "opens": {{ spec.opens | dump | safe }},
+        "closes": {{ spec.closes | dump | safe }}
+      }{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    ],
+    "sameAs": [
+      {%- for key, url in site.social %}
+      {{ url | dump | safe }}{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>

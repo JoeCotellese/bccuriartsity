@@ -14,7 +14,10 @@
     { "days": "Thursday - Sunday", "time": "11:00 AM - 6:00 PM" },
     { "days": "Monday - Wednesday", "time": "Closed" }
   ],
+  "hoursSchema": [
+    { "days": ["Thursday", "Friday", "Saturday", "Sunday"], "opens": "11:00", "closes": "18:00" }
+  ],
   "social": {
-    "instagram": "https://www.instagram.com/bccuriartsity"
+    "instagram": "https://www.instagram.com/buckscountycuriartsity"
   }
 }
