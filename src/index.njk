@@ -82,9 +82,17 @@ layout: base.njk
     <div>
       <p class="subhead">Location</p>
       <p class="address">
+        {% if site.address.locatedWithin %}<span class="located-within">Inside {{ site.address.locatedWithin }}</span><br>{% endif %}
         {{ site.address.street }}<br>
         {{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}
       </p>
+      {% if site.maps %}
+      <p class="map-links">
+        <a class="link" href="{{ site.maps.apple }}" target="_blank" rel="noopener noreferrer">Apple Maps</a>
+        <a class="link" href="{{ site.maps.google }}" target="_blank" rel="noopener noreferrer">Google Maps</a>
+        <a class="link" href="{{ site.maps.waze }}" target="_blank" rel="noopener noreferrer">Waze</a>
+      </p>
+      {% endif %}
       <p><a class="link" href="tel:{{ site.phone | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') }}">{{ site.phone }}</a></p>
       <p><a class="link" href="mailto:{{ site.email }}">{{ site.email }}</a></p>
     </div>
