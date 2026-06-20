@@ -1,0 +1,105 @@
+---
+layout: base.njk
+---
+{# ABOUTME: Home page — masthead, the shop, what you'll find, gallery invitation, visit. #}
+
+<section class="hero">
+  <p class="hero__eyebrow" data-rise style="animation-delay:.05s">Est. Lambertville, New Jersey · Purveyors of the Curious</p>
+  <p class="hero__county" data-rise style="animation-delay:.15s">Bucks County</p>
+  <h1 class="hero__word" data-rise style="animation-delay:.25s">Curi<span class="seal">ART</span>sity</h1>
+  <hr class="hero__rule">
+  <p class="hero__sub" data-rise style="animation-delay:.5s">{{ site.tagline }}</p>
+  <p class="hero__lead" data-rise style="animation-delay:.6s">{{ site.description }}</p>
+</section>
+
+<section id="shop" class="movement">
+  <div class="plate">
+    <span class="plate__no">Pl. I — The Shop</span>
+    <span class="plate__line"></span>
+  </div>
+  <div class="prose prose--lead dropcap">
+    <p>Part gallery, part treasure hunt. You might find a luminous oil painting
+      next to a set of glass chickens, or a statue of the Virgin Mary sailing
+      serenely in a boat. Every visit is a little different — and that is
+      exactly the point.</p>
+  </div>
+</section>
+
+<section id="collection" class="movement">
+  <div class="plate">
+    <span class="plate__no">Pl. II — What You'll Find</span>
+    <span class="plate__line"></span>
+  </div>
+  <div class="specimens">
+    <div class="specimen">
+      <span class="specimen__no">01</span>
+      <span class="specimen__name">Fine Art</span>
+      <span class="specimen__desc">Oils, watercolours &amp; the occasional oddity on canvas</span>
+    </div>
+    <div class="specimen">
+      <span class="specimen__no">02</span>
+      <span class="specimen__name">Antique Furniture</span>
+      <span class="specimen__desc">Honest pieces with a century or two behind them</span>
+    </div>
+    <div class="specimen">
+      <span class="specimen__no">03</span>
+      <span class="specimen__name">Glass &amp; Ceramics</span>
+      <span class="specimen__desc">From elegant crystal to the gloriously kitsch</span>
+    </div>
+    <div class="specimen">
+      <span class="specimen__no">04</span>
+      <span class="specimen__name">Curiosities &amp; Oddities</span>
+      <span class="specimen__desc">The things you didn't know you were looking for</span>
+    </div>
+  </div>
+</section>
+
+<section class="movement invitation">
+  <p class="invitation__kicker">The Gallery</p>
+  <p class="invitation__line">Recently passed<br>through these doors</p>
+  <a class="cta" href="/gallery/">View the Collection <span aria-hidden="true">&rarr;</span></a>
+</section>
+
+<section id="visit" class="movement">
+  <div class="plate">
+    <span class="plate__no">Pl. III — Visit</span>
+    <span class="plate__line"></span>
+  </div>
+  <div class="visit__grid">
+
+    <div>
+      <p class="subhead">Hours</p>
+      <table class="hours">
+        {%- for slot in site.hours %}
+        <tr>
+          <td>{{ slot.days }}</td>
+          <td>{{ slot.time }}</td>
+        </tr>
+        {%- endfor %}
+      </table>
+    </div>
+
+    <div>
+      <p class="subhead">Location</p>
+      <p class="address">
+        {{ site.address.street }}<br>
+        {{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}
+      </p>
+      <p><a class="link" href="tel:{{ site.phone | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') }}">{{ site.phone }}</a></p>
+      <p><a class="link" href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    </div>
+
+    <div>
+      <p class="subhead">Online</p>
+      {% if site.social.instagram %}
+      <p>
+        <a class="social link" href="{{ site.social.instagram }}" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          @bccuriartsity
+        </a>
+      </p>
+      {% endif %}
+    </div>
+
+  </div>
+</section>

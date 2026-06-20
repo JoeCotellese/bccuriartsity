@@ -1,0 +1,20 @@
+{
+  "name": "Bucks County CuriARTsity",
+  "tagline": "Fine Art & Curious Antiques",
+  "description": "A curated collection of fine art, antiques, and wonderfully unexpected finds in the heart of Lambertville, NJ.",
+  "address": {
+    "street": "42 Bridge Street",
+    "city": "Lambertville",
+    "state": "NJ",
+    "zip": "08530"
+  },
+  "phone": "(609) 555-0142",
+  "email": "hello@bccuriartsity.com",
+  "hours": [
+    { "days": "Thursday - Sunday", "time": "11:00 AM - 6:00 PM" },
+    { "days": "Monday - Wednesday", "time": "Closed" }
+  ],
+  "social": {
+    "instagram": "https://www.instagram.com/bccuriartsity"
+  }
+}
