@@ -25,6 +25,8 @@
 .hours td { padding: .15rem .75rem .15rem 0; }
 .address { font-style: normal; }
 .map-links { display: flex; flex-wrap: wrap; gap: .5rem .75rem; }
+.social { display: inline-flex; align-items: center; gap: .4rem; }
+.social svg { width: 1.25em; height: 1.25em; fill: currentColor; }
 
 .invitation { text-align: center; }
 
