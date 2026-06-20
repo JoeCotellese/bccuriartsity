@@ -244,6 +244,10 @@ body::before {
   border-bottom: 1px solid var(--rule); transition: border-color 0.3s ease;
 }
 .link:hover { border-color: var(--seal); }
+.map-links { display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; }
+.map-links a:not(:last-child)::after {
+  content: "·"; margin-left: 0.75rem; color: var(--rule); border: 0;
+}
 .social { display: inline-flex; align-items: center; gap: 0.55rem; }
 .social svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
 
