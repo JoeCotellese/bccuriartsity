@@ -1,0 +1,31 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+{#- ABOUTME: Generates /llms.txt (https://llmstxt.org) from site.json so it stays in sync. -#}
+{#- ABOUTME: Markdown summary of the shop + key pages for LLM consumption. -#}
+# {{ site.name }}
+
+> {{ site.description | safe }}
+
+{{ site.tagline | safe }}. Located inside {{ site.address.locatedWithin }} at {{ site.address.street }}, {{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}.
+
+## Pages
+
+- [Home](/): About the shop, what you'll find, and how to visit.
+- [Gallery](/gallery/): A rotating record of fine art, antiques, and curiosities that have passed through the shop.
+
+## What you'll find
+
+- Fine Art — oils, watercolours, and the occasional oddity on canvas.
+- Antique Furniture — honest pieces with a century or two behind them.
+- Glass & Ceramics — from elegant crystal to the gloriously kitsch.
+- Curiosities & Oddities — the things you didn't know you were looking for.
+
+## Visit
+{% for slot in site.hours %}
+- {{ slot.days }}: {{ slot.time }}
+{%- endfor %}
+- Phone: {{ site.phone }}
+- Email: {{ site.email }}
+- Instagram: {{ site.social.instagram }}
