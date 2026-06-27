@@ -59,17 +59,20 @@ h1, h2, h3, .nav-logo, .contact-block h3, .footer-logo {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--rule);
 }
+/* Header/footer break out of Pico's centered container to span the full viewport. */
+.nav-bar .container, .footer .container { max-width: none; }
 .nav-bar .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   padding-block: 0.9rem;
 }
-.nav-logo { font-size: 1.1rem; text-decoration: none; color: var(--deep-charcoal); }
+.nav-logo { font-size: 1.05rem; text-decoration: none; color: var(--deep-charcoal); }
 .nav-logo span { color: var(--forest-green); }
-.nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+.nav-links { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; margin: 0; padding: 0; }
 .nav-links a {
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--taupe);
@@ -81,11 +84,12 @@ h1, h2, h3, .nav-logo, .contact-block h3, .footer-logo {
 main > section { padding-block: 5rem; border-top: 1px solid var(--rule); }
 main > section:first-child { border-top: none; }
 
-/* HERO — two-column on desktop, image stacks on top for mobile. */
-.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: 80vh; }
+/* HERO — mobile-first: single column, image on top. Two-column added at the desktop breakpoint. */
+.hero { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
 .hero h1 { font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 1.15; margin-bottom: 1.5rem; }
 .hero p { color: var(--taupe); }
 .hero-media {
+  order: -1;
   aspect-ratio: 3/4;
   border-radius: 8px;
   overflow: hidden;
@@ -142,7 +146,7 @@ main > section:first-child { border-top: none; }
 
 /* FOOTER — dark; keep text legible (Pico-dim grey fails contrast here). */
 .footer { background: var(--deep-charcoal); color: rgba(248,247,245,0.85); border-top: 1px solid rgba(248,247,245,0.15); }
-.footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; padding-block: 2.5rem; }
+.footer .container { display: flex; flex-direction: column; text-align: center; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; padding-block: 2.5rem; }
 .footer .footer-logo { color: rgba(248,247,245,0.95); }
 .footer a { color: rgba(248,247,245,0.85); text-decoration: none; }
 .footer a:hover { color: #a8d472; }
@@ -152,10 +156,13 @@ main > section:first-child { border-top: none; }
 .lot-detail__img { border-radius: 6px; margin-block: 1.5rem; }
 .backlink { font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; }
 
-@media (max-width: 768px) {
-  .hero { grid-template-columns: 1fr; gap: 2rem; min-height: auto; }
-  .hero-media { order: -1; }
-  .nav-links { gap: 1rem; }
-  .nav-links a { font-size: 0.65rem; }
-  .footer .container { flex-direction: column; text-align: center; }
+/* Desktop layer — mobile-first base above is progressively enhanced here. */
+@media (min-width: 769px) {
+  .nav-bar .container, .footer .container { padding-inline: 2.5rem; }
+  .nav-logo { font-size: 1.1rem; }
+  .nav-links { gap: 2rem; flex-wrap: nowrap; }
+  .nav-links a { font-size: 0.75rem; }
+  .hero { grid-template-columns: 1fr 1fr; gap: 4rem; min-height: 80vh; }
+  .hero-media { order: 0; }
+  .footer .container { flex-direction: row; text-align: left; }
 }
