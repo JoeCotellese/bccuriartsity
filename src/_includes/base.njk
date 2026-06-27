@@ -1,4 +1,4 @@
-{# ABOUTME: Base HTML layout — fonts, paper texture, decorative frame, running head, footer. #}
+{# ABOUTME: Base HTML layout — fonts, Pico stylesheet, sticky nav, and the "Find Me In Person" contact block that doubles as the footer. #}
 {# ABOUTME: Wraps every page; each page's sections are injected via {{ content }}. #}
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +25,9 @@
   <meta name="twitter:description" content="{{ description or site.description }}">
   <meta name="twitter:image" content="{{ site.url }}/images/og-image.png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="stylesheet" href="/css/style.css">
   {# Structured data for search engines — driven entirely from _data/site.json. #}
@@ -63,29 +66,73 @@
   </script>
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="frame" aria-hidden="true"></div>
-
-  <div class="shell">
-    <header class="runninghead">
-      <a class="runninghead__mark" href="/">BC&nbsp;CuriARTsity</a>
-      <nav class="nav">
-        <a href="/#shop">The Shop</a>
-        <a href="/gallery/">Gallery</a>
-        <a href="/#visit">Visit</a>
-        {% if site.social.chairish %}<a class="nav__shop" role="button" href="{{ site.social.chairish }}" target="_blank" rel="noopener noreferrer">Shop Online</a>{% endif %}
+  <header class="nav-bar">
+    <div class="container">
+      <a class="nav-logo" href="/#home">Bucks County <span>CuriARTsity</span></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/#home">Home</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#gallery">Gallery</a></li>
+          <li><a href="/#contact">Find Me</a></li>
+        </ul>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main id="top">
-      {{ content | safe }}
-    </main>
+  <main>
+    {{ content | safe }}
+  </main>
 
-    <footer class="footer">
-      <span>&copy; {{ "" | currentYear }} {{ site.name }}</span>
-      <span>{{ site.address.city }}, {{ site.address.state }}</span>
-      <span>Purveyors of the Curious</span>
-    </footer>
-  </div>
+  {# The "Find Me In Person" contact block doubles as the site footer. #}
+  <footer id="contact" class="contact">
+    <div class="container">
+      <p class="section-label">Visit</p>
+      <h2>Find Me In Person</h2>
+      <p>I'm in residence at {{ site.address.locatedWithin }} in {{ site.address.city }}, {{ site.address.state }}. That's where you'll find the real magic.</p>
+
+      <div class="contact-grid">
+        <div class="contact-block">
+          <h3>Location</h3>
+          <address>
+            <strong>{{ site.address.locatedWithin }}</strong><br>
+            {{ site.address.street }}<br>
+            {{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}<br><br>
+            <a href="tel:{{ site.phone | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') }}">{{ site.phone }}</a>
+          </address>
+          {% if site.maps %}
+          <p class="social-links">
+            <a href="{{ site.maps.apple }}" target="_blank" rel="noopener noreferrer">Apple Maps</a>
+            <a href="{{ site.maps.google }}" target="_blank" rel="noopener noreferrer">Google Maps</a>
+            <a href="{{ site.maps.waze }}" target="_blank" rel="noopener noreferrer">Waze</a>
+          </p>
+          {% endif %}
+        </div>
+
+        <div class="contact-block">
+          <h3>Hours</h3>
+          <table class="hours">
+            {%- for slot in site.hours %}
+            <tr>
+              <td>{{ slot.days }}</td>
+              <td>{{ slot.time }}</td>
+            </tr>
+            {%- endfor %}
+          </table>
+        </div>
+
+        <div class="contact-block">
+          <h3>Also Online</h3>
+          <p>Follow my work and discoveries, or shop the collection from home.</p>
+          <div class="social-links">
+            {% if site.social.instagram %}<a href="{{ site.social.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>{% endif %}
+            {% if site.social.chairish %}<a href="{{ site.social.chairish }}" target="_blank" rel="noopener noreferrer">Shop on Chairish</a>{% endif %}
+          </div>
+        </div>
+      </div>
+
+      <p class="contact__signoff">&copy; {{ "" | currentYear }} {{ site.name }} &middot; {{ site.address.city }}, {{ site.address.state }}</p>
+    </div>
+  </footer>
 </body>
 </html>

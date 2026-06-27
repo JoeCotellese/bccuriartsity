@@ -1,15 +1,17 @@
-{# ABOUTME: Detail page layout for a single gallery lot. #}
+{# ABOUTME: Detail page layout for a single gallery piece. #}
 {# ABOUTME: Frontmatter (title, medium, year, sold, image) sets the header; the markdown body is the description. #}
 ---
 layout: base.njk
 ---
 
-<article class="lot-detail">
-  <a class="backlink" href="/gallery/">&larr; Back to the Collection</a>
-  <p class="hero__eyebrow">{{ medium }}{% if year %} · {{ year }}{% endif %}{% if sold %} · Sold{% endif %}</p>
-  <h1 class="page-head__title">{{ title }}</h1>
-  {% if image %}<img class="lot-detail__img" src="{{ image }}" alt="{{ title }}">{% endif %}
-  <div class="prose prose--lead">
-    {{ content | safe }}
+<section>
+  <div class="container">
+    <article class="lot-detail">
+      <a class="backlink" href="/#gallery">&larr; Back to the Collection</a>
+      <p class="section-label">{{ medium }}{% if year %} · {{ year }}{% endif %}{% if sold %} · Sold{% endif %}</p>
+      <h1>{{ title }}</h1>
+      {% if image %}<img class="lot-detail__img" src="{{ image }}" alt="{{ title }}">{% endif %}
+      {{ content | safe }}
+    </article>
   </div>
-</article>
+</section>

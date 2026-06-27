@@ -4,13 +4,13 @@
   "tagline": "Fine Art & Curious Antiques",
   "description": "A curated collection of fine art, antiques, and wonderfully unexpected finds in the heart of Lambertville, NJ.",
   "address": {
-    "locatedWithin": "Darberry Antiques",
+    "locatedWithin": "Darberry's Antiques",
     "street": "80 Lambert Ln",
     "city": "Lambertville",
     "state": "NJ",
     "zip": "08530"
   },
-  "phone": "(609) 555-0142",
+  "phone": "(908) 329-4446",
   "email": "hello@bccuriartsity.com",
   "hours": [
     { "days": "Sunday", "time": "11:00 AM - 5:00 PM" },
