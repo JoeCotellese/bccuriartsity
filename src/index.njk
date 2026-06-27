@@ -2,16 +2,18 @@
 layout: base.njk
 ---
 {# ABOUTME: Home page — single-page layout: hero, about, gallery (from collection), contact. #}
+{# Prose copy lives in src/sections/*.md; edit there, not here. #}
+{% set hero = collections.section | section("hero") %}
+{% set about = collections.section | section("about") %}
 
 <section id="home">
   <div class="container">
     <div class="hero">
       <div>
-        <p class="section-label">Art · Décor · Rare Books</p>
-        <h1>For People Building Interesting Spaces</h1>
-        <p>Curated pieces with a story — art, decorative objects, and rare
-          illustrated books for the curious collector.</p>
-        <p><a href="#contact" role="button">Visit Me In Person</a></p>
+        <p class="section-label">{{ hero.data.label }}</p>
+        <h1>{{ hero.data.headline }}</h1>
+        {{ hero.templateContent | safe }}
+        <p><a href="{{ hero.data.cta_href }}" role="button">{{ hero.data.cta_text }}</a></p>
       </div>
       <div class="hero-media">
         <span>Featured piece</span>
@@ -22,23 +24,9 @@ layout: base.njk
 
 <section id="about">
   <div class="container">
-    <p class="section-label">My Story</p>
-    <h2>Why I Do This</h2>
-    <p>I think interesting people build interesting spaces. And interesting spaces
-      need pieces with a story — things that make you curious, that start
-      conversations, that surprise you because you're just now waking up to the
-      idea that beauty comes in many forms.</p>
-    <p>We all contain multitudes. Your space should, too.</p>
-    <p>Mass market art and decor can be lovely. I've certainly bought plenty of it
-      and liked it well enough. But there's nothing like going on a treasure hunt
-      and coming home with something you're genuinely excited about. And in today's
-      world of AI everything, I'm even more drawn to things that were created for
-      humans, by humans.</p>
-    <p>I hunt for the pieces that feel rare and thoughtful — objects with a real
-      maker's hand behind them. The things that catch my eye usually have something
-      unexpected about them, a weird angle, a color that shouldn't work but does.
-      I'm drawn to work that has texture, personality, and won't apologize for being
-      strange.</p>
+    <p class="section-label">{{ about.data.label }}</p>
+    <h2>{{ about.data.heading }}</h2>
+    {{ about.templateContent | safe }}
   </div>
 </section>
 
