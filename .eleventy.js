@@ -4,6 +4,11 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("currentYear", () => new Date().getFullYear());
 
+  // Pull one section markdown file out of the `section` collection by its `key`.
+  eleventyConfig.addFilter("section", (sections, key) =>
+    sections.find((s) => s.data.key === key)
+  );
+
   return {
     dir: {
       input: "src",
