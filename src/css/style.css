@@ -34,7 +34,7 @@
 }
 
 /* Serif display face for headings + wordmark — Pico has no single heading-font token. */
-h1, h2, h3, .nav-logo, .contact-block h3, .footer-logo {
+h1, h2, h3, .nav-logo, .contact-block h3 {
   font-family: 'Crimson Text', Georgia, serif;
   font-weight: 400;
   letter-spacing: -0.3px;
@@ -59,8 +59,8 @@ h1, h2, h3, .nav-logo, .contact-block h3, .footer-logo {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--rule);
 }
-/* Header/footer break out of Pico's centered container to span the full viewport. */
-.nav-bar .container, .footer .container { max-width: none; }
+/* Header breaks out of Pico's centered container to span the full viewport. */
+.nav-bar .container { max-width: none; }
 .nav-bar .container {
   display: flex;
   align-items: center;
@@ -129,8 +129,8 @@ main > section:first-child { border-top: none; }
   padding: 0.25rem 0.6rem; border-radius: 3px;
 }
 
-/* CONTACT — dark, full-bleed band. Light text; brighter green links for AA contrast. */
-.contact { background: var(--deep-charcoal); color: rgba(248,247,245,0.92); border-top: none; }
+/* CONTACT — dark, full-bleed band that doubles as the footer. Light text; brighter green links for AA contrast. */
+.contact { background: var(--deep-charcoal); color: rgba(248,247,245,0.92); padding-block: 5rem; }
 .contact h2, .contact h3 { color: rgba(248,247,245,0.96); }
 .contact .section-label { color: #9fc46a; }
 .contact p, .contact address { color: rgba(248,247,245,0.82); }
@@ -142,14 +142,18 @@ main > section:first-child { border-top: none; }
 .hours, .hours tr, .hours td { background: transparent; width: 100%; }
 .hours td { padding: 0.4rem 0; border-bottom: 1px solid rgba(248,247,245,0.18); color: rgba(248,247,245,0.85); }
 .hours td:first-child { padding-right: 2rem; }
+.hours td:last-child { white-space: nowrap; text-align: right; }
 .social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
 
-/* FOOTER — dark; keep text legible (Pico-dim grey fails contrast here). */
-.footer { background: var(--deep-charcoal); color: rgba(248,247,245,0.85); border-top: 1px solid rgba(248,247,245,0.15); }
-.footer .container { display: flex; flex-direction: column; text-align: center; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; padding-block: 2.5rem; }
-.footer .footer-logo { color: rgba(248,247,245,0.95); }
-.footer a { color: rgba(248,247,245,0.85); text-decoration: none; }
-.footer a:hover { color: #a8d472; }
+/* Copyright sign-off at the bottom of the contact/footer band. */
+.contact__signoff {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(248,247,245,0.15);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: rgba(248,247,245,0.6);
+}
 
 /* DETAIL PAGE */
 .lot-detail { max-width: 700px; }
@@ -158,11 +162,10 @@ main > section:first-child { border-top: none; }
 
 /* Desktop layer — mobile-first base above is progressively enhanced here. */
 @media (min-width: 769px) {
-  .nav-bar .container, .footer .container { padding-inline: 2.5rem; }
+  .nav-bar .container { padding-inline: 2.5rem; }
   .nav-logo { font-size: 1.1rem; }
   .nav-links { gap: 2rem; flex-wrap: nowrap; }
   .nav-links a { font-size: 0.75rem; }
   .hero { grid-template-columns: 1fr 1fr; gap: 4rem; min-height: 80vh; }
   .hero-media { order: 0; }
-  .footer .container { flex-direction: row; text-align: left; }
 }
