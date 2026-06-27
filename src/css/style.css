@@ -1,49 +1,161 @@
-/* ABOUTME: Site-specific styles layered on top of Pico CSS. */
-/* ABOUTME: Pico owns base typography/color/spacing; this adds layout grids and shop specifics. */
+/* ABOUTME: Site-specific styles layered on Pico CSS. */
+/* ABOUTME: Overrides Pico's design tokens to the mockup palette/fonts, then adds the few layout grids Pico doesn't provide. */
 
-/* ponytail: thin layer. Add a token override or component here only when Pico's default falls short. */
+:root {
+  --forest-green: #2d5016;
+  --deep-charcoal: #2c2c2c;
+  --warm-cream: #f8f7f5;
+  --taupe: #8b8680;
+  --rule: rgba(45, 80, 22, 0.12);
 
-/* Decorative leftovers from the old design — markup still present, hidden for now */
-.grain, .frame, .hero__rule, .plate__line { display: none; }
-
-.shell { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
-
-/* Header / nav */
-.runninghead {
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 1rem; flex-wrap: wrap; margin-block: 1rem 2rem;
+  /* Re-skin Pico with the mockup palette + fonts. */
+  --pico-font-family-sans-serif: 'Jost', system-ui, sans-serif;
+  --pico-font-weight: 300;
+  --pico-line-height: 1.75;
+  --pico-background-color: var(--warm-cream);
+  --pico-color: var(--deep-charcoal);
+  --pico-muted-color: var(--taupe);
+  --pico-h1-color: var(--deep-charcoal);
+  --pico-h2-color: var(--deep-charcoal);
+  --pico-h3-color: var(--deep-charcoal);
+  --pico-primary-underline: transparent;
+  --pico-border-radius: 6px;
 }
-.runninghead__mark { font-weight: 700; text-decoration: none; }
-.nav { display: flex; gap: 1.25rem; }
 
-/* Section grids Pico doesn't provide */
-.specimens { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
-.specimen__name { display: block; font-weight: 700; }
-.specimen__desc { display: block; color: var(--pico-muted-color); }
+/* Pico defines its primary palette under :root:not([data-theme=dark]); match that
+   specificity so the forest-green takes over its default azure on buttons/links. */
+:root:not([data-theme="dark"]) {
+  --pico-primary: var(--forest-green);
+  --pico-primary-background: var(--forest-green);
+  --pico-primary-hover-background: var(--deep-charcoal);
+  --pico-primary-border: var(--forest-green);
+  --pico-primary-hover-border: var(--deep-charcoal);
+  --pico-primary-hover: var(--deep-charcoal);
+}
 
-.visit__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-.hours td { padding: .15rem .75rem .15rem 0; }
-.address { font-style: normal; }
-.map-links { display: flex; flex-wrap: wrap; gap: .5rem .75rem; }
-.social { display: inline-flex; align-items: center; gap: .4rem; }
-.social svg { width: 1.25em; height: 1.25em; fill: currentColor; }
+/* Serif display face for headings + wordmark — Pico has no single heading-font token. */
+h1, h2, h3, .nav-logo, .contact-block h3, .footer-logo {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
 
-.invitation { text-align: center; }
+/* Small uppercase eyebrow used above section titles. */
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--forest-green);
+  margin-bottom: 1rem;
+}
 
-/* Gallery */
-.lots { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; }
-.lot__media {
+/* NAV — sticky, blurred. Pico styles the links; we own the bar. */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(248, 247, 245, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-bar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.9rem;
+}
+.nav-logo { font-size: 1.1rem; text-decoration: none; color: var(--deep-charcoal); }
+.nav-logo span { color: var(--forest-green); }
+.nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+.nav-links a {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  text-decoration: none;
+}
+.nav-links a:hover { color: var(--forest-green); }
+
+/* Sections share a top rule, like the mockup. */
+main > section { padding-block: 5rem; border-top: 1px solid var(--rule); }
+main > section:first-child { border-top: none; }
+
+/* HERO — two-column on desktop, image stacks on top for mobile. */
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: 80vh; }
+.hero h1 { font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 1.15; margin-bottom: 1.5rem; }
+.hero p { color: var(--taupe); }
+.hero-media {
+  aspect-ratio: 3/4;
+  border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #d4c5b0 0%, #b8a87a 100%);
   display: flex; align-items: center; justify-content: center;
-  aspect-ratio: 4 / 3; overflow: hidden;
-  background: var(--pico-muted-border-color); border-radius: var(--pico-border-radius);
-  color: var(--pico-muted-color);
 }
-.lot__media img { width: 100%; height: 100%; object-fit: cover; }
-.lot--sold { opacity: .6; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.hero-media span { font-family: 'Crimson Text', serif; font-style: italic; color: rgba(255,255,255,0.5); }
 
-.footer {
-  display: flex; gap: 1rem; flex-wrap: wrap;
-  margin-top: 3rem; padding-top: 1rem;
-  border-top: 1px solid var(--pico-muted-border-color);
-  color: var(--pico-muted-color); font-size: .85rem;
+/* GALLERY — responsive card grid; each tile links to its detail page. */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+.gallery-item {
+  display: block;
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #f0ebe3;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-item:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.12); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-item__placeholder {
+  display: flex; align-items: center; justify-content: center; height: 100%;
+  color: #999; font-size: 0.85rem; text-align: center; padding: 1rem;
+}
+.gallery-item__sold {
+  position: absolute; top: 0.75rem; right: 0.75rem;
+  background: var(--deep-charcoal); color: var(--warm-cream);
+  font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.25rem 0.6rem; border-radius: 3px;
+}
+
+/* CONTACT — dark, full-bleed band. Light text; brighter green links for AA contrast. */
+.contact { background: var(--deep-charcoal); color: rgba(248,247,245,0.92); border-top: none; }
+.contact h2, .contact h3 { color: rgba(248,247,245,0.96); }
+.contact .section-label { color: #9fc46a; }
+.contact p, .contact address { color: rgba(248,247,245,0.82); }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 3rem; margin-top: 2.5rem; }
+.contact a { color: #a8d472; }
+.contact a:hover { color: #c4e89a; }
+.contact address { font-style: normal; }
+/* Pico paints tables with --pico-background-color; force transparent on the dark band. */
+.hours, .hours tr, .hours td { background: transparent; width: 100%; }
+.hours td { padding: 0.4rem 0; border-bottom: 1px solid rgba(248,247,245,0.18); color: rgba(248,247,245,0.85); }
+.hours td:first-child { padding-right: 2rem; }
+.social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+/* FOOTER — dark; keep text legible (Pico-dim grey fails contrast here). */
+.footer { background: var(--deep-charcoal); color: rgba(248,247,245,0.85); border-top: 1px solid rgba(248,247,245,0.15); }
+.footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; padding-block: 2.5rem; }
+.footer .footer-logo { color: rgba(248,247,245,0.95); }
+.footer a { color: rgba(248,247,245,0.85); text-decoration: none; }
+.footer a:hover { color: #a8d472; }
+
+/* DETAIL PAGE */
+.lot-detail { max-width: 700px; }
+.lot-detail__img { border-radius: 6px; margin-block: 1.5rem; }
+.backlink { font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; min-height: auto; }
+  .hero-media { order: -1; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.65rem; }
+  .footer .container { flex-direction: column; text-align: center; }
 }

@@ -1,118 +1,114 @@
 ---
 layout: base.njk
 ---
-{# ABOUTME: Home page — masthead, the shop, what you'll find, gallery invitation, visit. #}
+{# ABOUTME: Home page — single-page layout: hero, about, gallery (from collection), contact. #}
 
-<section class="hero">
-  <p class="hero__eyebrow" data-rise style="animation-delay:.05s">Est. Lambertville, New Jersey · Purveyors of the Curious</p>
-  <p class="hero__county" data-rise style="animation-delay:.15s">Bucks County</p>
-  <h1 class="hero__word" data-rise style="animation-delay:.25s">Curi<span class="seal">ART</span>sity</h1>
-  <hr class="hero__rule">
-  <p class="hero__sub" data-rise style="animation-delay:.5s">{{ site.tagline }}</p>
-  <p class="hero__lead" data-rise style="animation-delay:.6s">{{ site.description }}</p>
-</section>
-
-<section id="shop" class="movement">
-  <div class="plate">
-    <span class="plate__no">Pl. I — The Shop</span>
-    <span class="plate__line"></span>
-  </div>
-  <div class="prose prose--lead dropcap">
-    <p>Part gallery, part treasure hunt. You might find a luminous oil painting
-      next to a set of glass chickens, or a statue of the Virgin Mary sailing
-      serenely in a boat. Every visit is a little different — and that is
-      exactly the point.</p>
-  </div>
-</section>
-
-<section id="collection" class="movement">
-  <div class="plate">
-    <span class="plate__no">Pl. II — What You'll Find</span>
-    <span class="plate__line"></span>
-  </div>
-  <div class="specimens">
-    <div class="specimen">
-      <span class="specimen__no">01</span>
-      <span class="specimen__name">Fine Art</span>
-      <span class="specimen__desc">Oils, watercolours &amp; the occasional oddity on canvas</span>
-    </div>
-    <div class="specimen">
-      <span class="specimen__no">02</span>
-      <span class="specimen__name">Antique Furniture</span>
-      <span class="specimen__desc">Honest pieces with a century or two behind them</span>
-    </div>
-    <div class="specimen">
-      <span class="specimen__no">03</span>
-      <span class="specimen__name">Glass &amp; Ceramics</span>
-      <span class="specimen__desc">From elegant crystal to the gloriously kitsch</span>
-    </div>
-    <div class="specimen">
-      <span class="specimen__no">04</span>
-      <span class="specimen__name">Curiosities &amp; Oddities</span>
-      <span class="specimen__desc">The things you didn't know you were looking for</span>
+<section id="home">
+  <div class="container">
+    <div class="hero">
+      <div>
+        <p class="section-label">Art · Décor · Rare Books</p>
+        <h1>For People Building Interesting Spaces</h1>
+        <p>Curated pieces with a story — art, decorative objects, and rare
+          illustrated books for the curious collector.</p>
+        <p><a href="#contact" role="button">Visit Me In Person</a></p>
+      </div>
+      <div class="hero-media">
+        <span>Featured piece</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="movement invitation">
-  <p class="invitation__kicker">The Gallery</p>
-  <p class="invitation__line">Recently passed<br>through these doors</p>
-  <a class="cta" href="/gallery/">View the Collection <span aria-hidden="true">&rarr;</span></a>
+<section id="about">
+  <div class="container">
+    <p class="section-label">My Story</p>
+    <h2>Why I Do This</h2>
+    <p>I think interesting people build interesting spaces. And interesting spaces
+      need pieces with a story — things that make you curious, that start
+      conversations, that surprise you because you're just now waking up to the
+      idea that beauty comes in many forms.</p>
+    <p>We all contain multitudes. Your space should, too.</p>
+    <p>Mass market art and decor can be lovely. I've certainly bought plenty of it
+      and liked it well enough. But there's nothing like going on a treasure hunt
+      and coming home with something you're genuinely excited about. And in today's
+      world of AI everything, I'm even more drawn to things that were created for
+      humans, by humans.</p>
+    <p>I hunt for the pieces that feel rare and thoughtful — objects with a real
+      maker's hand behind them. The things that catch my eye usually have something
+      unexpected about them, a weird angle, a color that shouldn't work but does.
+      I'm drawn to work that has texture, personality, and won't apologize for being
+      strange.</p>
+  </div>
 </section>
 
-<section id="visit" class="movement">
-  <div class="plate">
-    <span class="plate__no">Pl. III — Visit</span>
-    <span class="plate__line"></span>
+<section id="gallery">
+  <div class="container">
+    <p class="section-label">Collection</p>
+    <h2>Featured Pieces</h2>
+    {% if collections.gallery | length %}
+    <div class="gallery-grid">
+      {%- for item in collections.gallery | reverse %}
+      <a class="gallery-item" href="{{ item.url }}">
+        {% if item.data.image %}
+          <img src="{{ item.data.image }}" alt="{{ item.data.title }}" loading="lazy">
+        {% else %}
+          <span class="gallery-item__placeholder">{{ item.data.title }}</span>
+        {% endif %}
+        {% if item.data.sold %}<span class="gallery-item__sold">Sold</span>{% endif %}
+      </a>
+      {%- endfor %}
+    </div>
+    {% else %}
+    <p>The catalogue is being photographed. Check back soon.</p>
+    {% endif %}
   </div>
-  <div class="visit__grid">
+</section>
 
-    <div>
-      <p class="subhead">Hours</p>
-      <table class="hours">
-        {%- for slot in site.hours %}
-        <tr>
-          <td>{{ slot.days }}</td>
-          <td>{{ slot.time }}</td>
-        </tr>
-        {%- endfor %}
-      </table>
+<section id="contact" class="contact">
+  <div class="container">
+    <p class="section-label">Visit</p>
+    <h2>Find Me In Person</h2>
+    <p>I'm in residence at {{ site.address.locatedWithin }} in {{ site.address.city }}, {{ site.address.state }}. That's where you'll find the real magic.</p>
+
+    <div class="contact-grid">
+      <div class="contact-block">
+        <h3>Location</h3>
+        <address>
+          <strong>{{ site.address.locatedWithin }}</strong><br>
+          {{ site.address.street }}<br>
+          {{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}<br><br>
+          <a href="tel:{{ site.phone | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') }}">{{ site.phone }}</a>
+        </address>
+        {% if site.maps %}
+        <p class="social-links">
+          <a href="{{ site.maps.apple }}" target="_blank" rel="noopener noreferrer">Apple Maps</a>
+          <a href="{{ site.maps.google }}" target="_blank" rel="noopener noreferrer">Google Maps</a>
+          <a href="{{ site.maps.waze }}" target="_blank" rel="noopener noreferrer">Waze</a>
+        </p>
+        {% endif %}
+      </div>
+
+      <div class="contact-block">
+        <h3>Hours</h3>
+        <table class="hours">
+          {%- for slot in site.hours %}
+          <tr>
+            <td>{{ slot.days }}</td>
+            <td>{{ slot.time }}</td>
+          </tr>
+          {%- endfor %}
+        </table>
+      </div>
+
+      <div class="contact-block">
+        <h3>Also Online</h3>
+        <p>Follow my work and discoveries, or shop the collection from home.</p>
+        <div class="social-links">
+          {% if site.social.instagram %}<a href="{{ site.social.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>{% endif %}
+          {% if site.social.chairish %}<a href="{{ site.social.chairish }}" target="_blank" rel="noopener noreferrer">Shop on Chairish</a>{% endif %}
+        </div>
+      </div>
     </div>
-
-    <div>
-      <p class="subhead">Location</p>
-      <p class="address">
-        {% if site.address.locatedWithin %}<span class="located-within">Inside {{ site.address.locatedWithin }}</span><br>{% endif %}
-        {{ site.address.street }}<br>
-        {{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}
-      </p>
-      {% if site.maps %}
-      <p class="map-links">
-        <a class="link" href="{{ site.maps.apple }}" target="_blank" rel="noopener noreferrer">Apple Maps</a>
-        <a class="link" href="{{ site.maps.google }}" target="_blank" rel="noopener noreferrer">Google Maps</a>
-        <a class="link" href="{{ site.maps.waze }}" target="_blank" rel="noopener noreferrer">Waze</a>
-      </p>
-      {% endif %}
-      <p><a class="link" href="tel:{{ site.phone | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') }}">{{ site.phone }}</a></p>
-      <p><a class="link" href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-    </div>
-
-    <div>
-      <p class="subhead">Online</p>
-      {% if site.social.instagram %}
-      <p>
-        <a class="social link" href="{{ site.social.instagram }}" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          @bccuriartsity
-        </a>
-      </p>
-      {% endif %}
-      {% if site.social.chairish %}
-      <p>
-        <a class="link" href="{{ site.social.chairish }}" target="_blank" rel="noopener noreferrer">Shop Online &middot; Chairish</a>
-      </p>
-      {% endif %}
-    </div>
-
   </div>
 </section>

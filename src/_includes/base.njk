@@ -1,4 +1,4 @@
-{# ABOUTME: Base HTML layout — fonts, paper texture, decorative frame, running head, footer. #}
+{# ABOUTME: Base HTML layout — fonts, Pico stylesheet, sticky nav, footer. #}
 {# ABOUTME: Wraps every page; each page's sections are injected via {{ content }}. #}
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +25,9 @@
   <meta name="twitter:description" content="{{ description or site.description }}">
   <meta name="twitter:image" content="{{ site.url }}/images/og-image.png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="stylesheet" href="/css/style.css">
   {# Structured data for search engines — driven entirely from _data/site.json. #}
@@ -63,29 +66,37 @@
   </script>
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="frame" aria-hidden="true"></div>
-
-  <div class="shell">
-    <header class="runninghead">
-      <a class="runninghead__mark" href="/">BC&nbsp;CuriARTsity</a>
-      <nav class="nav">
-        <a href="/#shop">The Shop</a>
-        <a href="/gallery/">Gallery</a>
-        <a href="/#visit">Visit</a>
-        {% if site.social.chairish %}<a class="nav__shop" role="button" href="{{ site.social.chairish }}" target="_blank" rel="noopener noreferrer">Shop Online</a>{% endif %}
+  <header class="nav-bar">
+    <div class="container">
+      <a class="nav-logo" href="/#home">Bucks County <span>CuriARTsity</span></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/#home">Home</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#gallery">Gallery</a></li>
+          <li><a href="/#contact">Find Me</a></li>
+        </ul>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main id="top">
-      {{ content | safe }}
-    </main>
+  <main>
+    {{ content | safe }}
+  </main>
 
-    <footer class="footer">
+  <footer class="footer">
+    <div class="container">
+      <span class="footer-logo">{{ site.name }}</span>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/#home">Home</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#gallery">Gallery</a></li>
+          <li><a href="/#contact">Find Me</a></li>
+        </ul>
+      </nav>
       <span>&copy; {{ "" | currentYear }} {{ site.name }}</span>
-      <span>{{ site.address.city }}, {{ site.address.state }}</span>
-      <span>Purveyors of the Curious</span>
-    </footer>
-  </div>
+    </div>
+  </footer>
 </body>
 </html>
