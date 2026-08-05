@@ -27,6 +27,26 @@ That's it. From now on you just open Claude Code and start working.
 since your last save. If something looks wrong, right-click the file and choose
 Discard changes.
 
+## Making a change
+
+The loop is the same every time, whether you're fixing a typo or moving a whole
+section around:
+
+1. **Say what you want.** Plain English. "Change Saturday to 10 to 4." "Add a
+   piece called Harbor at Dusk." "Make the headline bigger." You don't need to
+   know which file it lives in.
+2. **Look at the preview.** It refreshes on its own within a second or two. If
+   you changed how something looks, drag the window narrow too, so you can see
+   what it does on a phone.
+3. **Say `save` or `undo`.** Save keeps it. Undo takes it back. Either way
+   nothing has reached the live site yet.
+
+Save as often as you like. Each save is a point you can come back to, so it's
+better to save three small changes than one big one.
+
+Undo always asks before it takes something back, and it only goes one step at a
+time. Say undo again to keep going back.
+
 ## What do I want to change?
 
 | I want to change…                                  | Edit this                                  |

@@ -2,6 +2,44 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Who edits this site
+
+Two kinds of people work in this repo: a developer, and the shop owner, who is
+not a programmer and drives Claude Code from the desktop app. Match whoever is
+asking. If the request is plain language about words, pictures, or how the site
+looks, answer in plain language: no file paths, no CSS property names, no build
+output. Name things the way the site does ("the hours", "the top banner", "a
+piece in the gallery").
+
+Editing splits in two, and the halves carry different risk.
+
+**Content** is `src/_data/site.json`, `src/sections/*.md`, and `src/gallery/*.md`.
+Route plain-language requests to them:
+
+- shop name, address, phone, email, hours, social links → `src/_data/site.json`
+- the top banner, the "Why I Do This" story → `src/sections/`
+- a gallery piece, adding one, removing one, marking one sold → `src/gallery/`
+
+Changing hours means changing `hours` and `hoursSchema` together. They are the
+same fact written twice and drifting them apart is silent.
+
+**Structural** is `src/index.njk`, `src/_includes/*.njk`, and `src/css/style.css`.
+These can break the build or quietly ruin the layout on a phone. After changing
+any of them:
+
+- Run `npm run build`. A template error surfaces as a stack trace the owner
+  cannot read, so catch it while the change is still easy to undo.
+- Tell them to narrow the browser window and look. This site is mobile-first
+  with a single breakpoint at 769px, and a change that looks right on a laptop
+  routinely breaks below it. They will not think to check.
+
+**Say before you touch** `.eleventy.js`, `netlify.toml`, `package.json`, `bin/`,
+or `.claude/`. These are how the site builds and publishes rather than what it
+says, and a change there fails in ways the preview does not show.
+
+Edits are saved and undone through the `save` and `undo` skills, which keep a
+history the owner can read. Prefer them over raw git commands.
+
 ## Commands
 
 - `npm start` — Eleventy dev server with live reload (`eleventy --serve`)
