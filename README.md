@@ -6,6 +6,25 @@ built from plain text files. **You edit text files; the site rebuilds itself.**
 You don't need to be a programmer to update the copy, the shop details, or the
 gallery. This README points you to the right file for whatever you want to change.
 
+## First time setup (Mac)
+
+You only do this once.
+
+1. **Install GitHub Desktop** from <https://desktop.github.com>. Open it and
+   sign in with your GitHub account.
+2. **Clone the site.** File → Clone repository. Pick `bccuriartsity` from the
+   list, accept the default location, click Clone. It lands in
+   `~/Documents/GitHub/bccuriartsity`.
+3. **Install Node.js** from <https://nodejs.org>. Take the version it offers you
+   and click through the installer.
+4. **Open Claude Code desktop** and open the folder from step 2 as your project.
+
+That's it. From now on you just open Claude Code and start working.
+
+**GitHub Desktop is your undo button.** It shows you everything that changed
+since your last save. If something looks wrong, right-click the file and choose
+Discard changes.
+
 ## What do I want to change?
 
 | I want to change…                                  | Edit this                                  |
