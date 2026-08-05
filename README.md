@@ -82,7 +82,7 @@ so keep it short and lowercase with dashes. To remove a piece, delete its file.
 ## Previewing your changes
 
 Ask Claude to preview the site. It opens the site in your browser at
-<http://localhost:8080> and leaves it running for the rest of your session.
+<http://localhost:18080> and leaves it running for the rest of your session.
 Every change you make appears there a second or two later on its own. You don't
 need to restart anything or click refresh.
 
