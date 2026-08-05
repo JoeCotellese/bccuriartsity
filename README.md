@@ -6,6 +6,51 @@ built from plain text files. **You edit text files; the site rebuilds itself.**
 You don't need to be a programmer to update the copy, the shop details, or the
 gallery. This README points you to the right file for whatever you want to change.
 
+## First time setup (Mac)
+
+You only do this once.
+
+1. **Install GitHub Desktop** from <https://desktop.github.com>. Open it and
+   sign in with your GitHub account.
+2. **Clone the site.** File → Clone repository. Pick `bccuriartsity` from the
+   list, accept the default location, click Clone. It lands in
+   `~/Documents/GitHub/bccuriartsity`.
+3. **Install Node.js** from <https://nodejs.org>. Take the version it offers you
+   and click through the installer.
+4. **Open Claude Code desktop** and open the folder from step 2 as your project.
+5. **Ask Claude to set up your computer.** It checks everything is in place and
+   installs what the site needs. Takes about a minute.
+
+That's it. From now on you just open Claude Code and start working.
+
+**GitHub Desktop is your undo button.** It shows you everything that changed
+since your last save. If something looks wrong, right-click the file and choose
+Discard changes.
+
+## Making a change
+
+The loop is the same every time, whether you're fixing a typo or moving a whole
+section around:
+
+1. **Say what you want.** Plain English. "Change Saturday to 10 to 4." "Add a
+   piece called Harbor at Dusk." "Make the headline bigger." You don't need to
+   know which file it lives in.
+2. **Look at the preview.** It refreshes on its own within a second or two. If
+   you changed how something looks, drag the window narrow too, so you can see
+   what it does on a phone.
+3. **Say `save` or `undo`.** Save keeps it. Undo takes it back. Either way
+   nothing has reached the live site yet.
+4. **Say `share` when you're done.** You get a link to your changes that you can
+   look at properly or send to Joe. Still not the real site.
+5. **Say `publish` to make it real.** It asks you to confirm, then the live site
+   updates about a minute later.
+
+Save as often as you like. Each save is a point you can come back to, so it's
+better to save three small changes than one big one.
+
+Undo always asks before it takes something back, and it only goes one step at a
+time. Say undo again to keep going back.
+
 ## What do I want to change?
 
 | I want to change…                                  | Edit this                                  |
@@ -60,25 +105,32 @@ so keep it short and lowercase with dashes. To remove a piece, delete its file.
 
 ## Previewing your changes
 
-You need [Node.js](https://nodejs.org) installed once. Then, in this folder:
+Ask Claude to preview the site. It opens the site in your browser at
+<http://localhost:18080> and leaves it running for the rest of your session.
+Every change you make appears there a second or two later on its own. You don't
+need to restart anything or click refresh.
 
-```
-npm install      # first time only
-npm start        # starts a live preview
-```
+This preview is only on your computer. Nobody else can see it, and the live site
+doesn't change until you publish.
 
-Open the address it prints (usually <http://localhost:8080>) in your browser.
-Edits to the content files show up automatically. Press `Ctrl-C` in the terminal
-to stop.
-
-> Note: if you change the colors/fonts setup or `.eleventy.js`, stop and restart
-> `npm start` — those aren't picked up live.
+> For developers: `npm install` then `npm start`. Changes to `.eleventy.js` or
+> `package.json` need a restart; everything else reloads live.
 
 ## Publishing
 
-The live site updates automatically when changes reach the `main` branch on
-GitHub. If you're not comfortable with Git, hand your edited files to whoever
-manages the site and they'll publish them.
+Your work goes through three stages, and it's worth knowing which one you're in:
+
+- **Saved** — on your computer only. Nobody else can see it.
+- **Shared** — on the internet at its own link, which you can send to anyone.
+  The real site still hasn't changed.
+- **Published** — on the real site at
+  <https://buckscountycuriartsity.netlify.app>, where the public sees it.
+
+Say `share` and then `publish` to move through them. Publish asks you to confirm
+first, and it won't let you publish something that's broken.
+
+Between share and publish is where you look properly, and where Joe can look
+too. Take the time.
 
 ## How it's built (for the curious / for developers)
 
