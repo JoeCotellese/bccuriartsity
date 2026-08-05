@@ -40,6 +40,10 @@ section around:
    what it does on a phone.
 3. **Say `save` or `undo`.** Save keeps it. Undo takes it back. Either way
    nothing has reached the live site yet.
+4. **Say `share` when you're done.** You get a link to your changes that you can
+   look at properly or send to Joe. Still not the real site.
+5. **Say `publish` to make it real.** It asks you to confirm, then the live site
+   updates about a minute later.
 
 Save as often as you like. Each save is a point you can come back to, so it's
 better to save three small changes than one big one.
@@ -114,9 +118,19 @@ doesn't change until you publish.
 
 ## Publishing
 
-The live site updates automatically when changes reach the `main` branch on
-GitHub. If you're not comfortable with Git, hand your edited files to whoever
-manages the site and they'll publish them.
+Your work goes through three stages, and it's worth knowing which one you're in:
+
+- **Saved** — on your computer only. Nobody else can see it.
+- **Shared** — on the internet at its own link, which you can send to anyone.
+  The real site still hasn't changed.
+- **Published** — on the real site at
+  <https://buckscountycuriartsity.netlify.app>, where the public sees it.
+
+Say `share` and then `publish` to move through them. Publish asks you to confirm
+first, and it won't let you publish something that's broken.
+
+Between share and publish is where you look properly, and where Joe can look
+too. Take the time.
 
 ## How it's built (for the curious / for developers)
 

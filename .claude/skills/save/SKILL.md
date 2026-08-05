@@ -10,14 +10,18 @@ site. Say so, every time, so the difference stays clear.
 
 1. Look at what actually changed with `git status` and `git diff`. If nothing
    changed, say so and stop.
-2. If any structural file changed (`.njk`, `.css`, `.eleventy.js`,
+2. If the current branch is `main`, create a working branch first, named from
+   what they asked for: "change the Saturday hours" becomes
+   `edits/change-the-saturday-hours`. Do this silently. Branches are not a
+   concept they need, and every later step depends on not being on `main`.
+3. If any structural file changed (`.njk`, `.css`, `.eleventy.js`,
    `package.json`), run `npm run build` first. If the build fails, **do not
    save.** Explain in plain language what broke and offer to undo it. A broken
    build reaches the live site as a blank page.
-3. Commit everything that changed, with a message describing the change the way
+4. Commit everything that changed, with a message describing the change the way
    the user would say it. "Update the Saturday hours", not "modify site.json".
-4. Tell them it's saved, in one sentence, and that the live site hasn't changed
-   yet.
+5. Tell them it's saved, in one sentence, and that the live site hasn't changed
+   yet. If they're done for now, the next step is `share`.
 
 ## Rules
 
