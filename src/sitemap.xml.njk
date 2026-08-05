@@ -3,12 +3,12 @@ permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
 {#- ABOUTME: Generates /sitemap.xml from all content pages for search indexing. -#}
-{#- ABOUTME: URLs are absolute once site.url is set; relative until then. -#}
+{#- ABOUTME: URLs are absolute; baseUrl comes from Netlify at build time. -#}
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for page in collections.all %}
   <url>
-    <loc>{{ site.url }}{{ page.url }}</loc>
+    <loc>{{ baseUrl }}{{ page.url }}</loc>
   </url>
 {%- endfor %}
 </urlset>

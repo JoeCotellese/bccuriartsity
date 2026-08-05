@@ -13,17 +13,19 @@
   <link rel="icon" href="/images/favicon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="/images/favicon-180.png">
 
-  {# Open Graph / Twitter — link previews when shared. Absolute once site.url is set. #}
+  <link rel="canonical" href="{{ baseUrl }}{{ page.url }}">
+
+  {# Open Graph / Twitter — link previews when shared. baseUrl makes these absolute, as both specs require. #}
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{{ site.name }}">
   <meta property="og:title" content="{{ title or site.name }}">
   <meta property="og:description" content="{{ description or site.description }}">
-  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-  <meta property="og:image" content="{{ site.url }}/images/og-image.png">
+  <meta property="og:url" content="{{ baseUrl }}{{ page.url }}">
+  <meta property="og:image" content="{{ baseUrl }}/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ title or site.name }}">
   <meta name="twitter:description" content="{{ description or site.description }}">
-  <meta name="twitter:image" content="{{ site.url }}/images/og-image.png">
+  <meta name="twitter:image" content="{{ baseUrl }}/images/og-image.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
