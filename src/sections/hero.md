@@ -1,7 +1,7 @@
 ---
 key: hero
 label: "Art · Décor · Rare Books"
-headline: "For People Building Interesting Spaces"
+headline: "test test"
 cta_text: "Visit Me In Person"
 cta_href: "#contact"
 ---
