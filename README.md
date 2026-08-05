@@ -18,6 +18,8 @@ You only do this once.
 3. **Install Node.js** from <https://nodejs.org>. Take the version it offers you
    and click through the installer.
 4. **Open Claude Code desktop** and open the folder from step 2 as your project.
+5. **Ask Claude to set up your computer.** It checks everything is in place and
+   installs what the site needs. Takes about a minute.
 
 That's it. From now on you just open Claude Code and start working.
 
@@ -79,19 +81,16 @@ so keep it short and lowercase with dashes. To remove a piece, delete its file.
 
 ## Previewing your changes
 
-You need [Node.js](https://nodejs.org) installed once. Then, in this folder:
+Ask Claude to preview the site. It opens the site in your browser at
+<http://localhost:8080> and leaves it running for the rest of your session.
+Every change you make appears there a second or two later on its own. You don't
+need to restart anything or click refresh.
 
-```
-npm install      # first time only
-npm start        # starts a live preview
-```
+This preview is only on your computer. Nobody else can see it, and the live site
+doesn't change until you publish.
 
-Open the address it prints (usually <http://localhost:8080>) in your browser.
-Edits to the content files show up automatically. Press `Ctrl-C` in the terminal
-to stop.
-
-> Note: if you change the colors/fonts setup or `.eleventy.js`, stop and restart
-> `npm start` — those aren't picked up live.
+> For developers: `npm install` then `npm start`. Changes to `.eleventy.js` or
+> `package.json` need a restart; everything else reloads live.
 
 ## Publishing
 

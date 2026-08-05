@@ -1,0 +1,73 @@
+#!/bin/bash
+# ABOUTME: One-time environment check and install for people editing this site.
+# ABOUTME: Verifies Node, installs dependencies, then builds once to prove it works.
+
+NODE_MINIMUM=18
+SITE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+cd "$SITE_DIR" || exit 1
+
+echo "Checking your computer is ready to work on the site..."
+echo
+
+if ! command -v node > /dev/null 2>&1; then
+  echo "MISSING: Node.js is not installed."
+  echo
+  echo "Node.js is the program that builds the site on your computer."
+  echo "Go to https://nodejs.org, download the version it offers you, and run"
+  echo "the installer. Then quit Claude Code, reopen it, and try again."
+  exit 1
+fi
+
+node_version="$(node --version)"
+node_major="$(echo "$node_version" | sed 's/^v//' | cut -d. -f1)"
+
+if [ "$node_major" -lt "$NODE_MINIMUM" ]; then
+  echo "TOO OLD: Node.js $node_version is installed, but the site needs $NODE_MINIMUM or newer."
+  echo
+  echo "Go to https://nodejs.org and install the version it offers you. That will"
+  echo "replace the old one. Then quit Claude Code, reopen it, and try again."
+  exit 1
+fi
+
+echo "  Node.js $node_version — good."
+
+if ! command -v npm > /dev/null 2>&1; then
+  echo
+  echo "MISSING: npm is not installed."
+  echo
+  echo "npm normally comes with Node.js, so something went wrong with that install."
+  echo "Reinstall Node.js from https://nodejs.org and try again."
+  exit 1
+fi
+
+echo "  npm $(npm --version) — good."
+echo
+echo "Installing the site's building blocks. This takes a minute the first time..."
+echo
+
+if ! npm install; then
+  echo
+  echo "FAILED: the install did not finish."
+  echo
+  echo "This is usually a dropped internet connection. Check you're online and"
+  echo "run setup again. If it keeps failing, send Joe everything above this line."
+  exit 1
+fi
+
+echo
+echo "Building the site once to make sure everything works..."
+echo
+
+if ! npm run build; then
+  echo
+  echo "FAILED: the site did not build."
+  echo
+  echo "The install worked, so this is a problem with the site's files rather than"
+  echo "your computer. Send Joe everything above this line."
+  exit 1
+fi
+
+echo
+echo "All set. Your computer is ready to work on the site."
+echo "Ask Claude to preview the site whenever you want to see it."
