@@ -58,6 +58,13 @@ Single source of truth for shop facts is `src/_data/site.json` — name, address
 
 `site.json` propagates into generated files that exist to stay in sync with it: `llms.txt.njk` → `/llms.txt`, `sitemap.xml.njk`, `robots.txt.njk`, and the SEO/schema.org meta in `base.njk`. Editing one of these by hand instead of `site.json` will cause drift.
 
+The site's own web address is **not** in `site.json`. `src/_data/baseUrl.js`
+reads it from Netlify's build environment: `URL` in production, which becomes
+the custom domain the moment one is attached, and `DEPLOY_PRIME_URL` on a deploy
+preview so link previews and sitemaps stay self-consistent there. Locally it
+falls back to `http://localhost:18080`. Canonical, Open Graph, sitemap, and
+`robots.txt` all build on it. Attaching a domain needs no code change.
+
 ### Page structure
 
 The public site is a **single page** with anchor navigation (`#home`, `#about`, `#gallery`, `#contact`). Gallery pieces also get their own detail pages at `/gallery/<slug>/`.
