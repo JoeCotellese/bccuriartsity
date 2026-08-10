@@ -1,7 +1,7 @@
 {
   "name": "Bucks County CuriARTsity",
-  "tagline": "Fine Art & Curious Antiques",
-  "description": "A curated collection of fine art, antiques, and wonderfully unexpected finds in the heart of Lambertville, NJ.",
+  "tagline": "Curious finds for curious minds.",
+  "description": "Original art, prints, mid-century furniture, rare and vintage books, and curious objects. Visit my booth at Darberry's Antiques in Lambertville, NJ — or shop online.",
   "address": {
     "locatedWithin": "Darberry's Antiques",
     "street": "80 Lambert Ln",
@@ -10,7 +10,7 @@
     "zip": "08530"
   },
   "phone": "(908) 329-4446",
-  "email": "hello@bccuriartsity.com",
+  "email": "trishsammer@gmail.com",
   "hours": [
     {
       "days": "Sunday",
@@ -35,25 +35,22 @@
   ],
   "hoursSchema": [
     {
-      "days": [
-        "Sunday",
-        "Saturday"
-      ],
+      "days": ["Sunday", "Saturday"],
       "opens": "11:00",
       "closes": "17:00"
     },
     {
-      "days": [
-        "Monday",
-        "Friday"
-      ],
+      "days": ["Monday", "Friday"],
       "opens": "11:00",
       "closes": "16:00"
     }
   ],
   "social": {
     "instagram": "https://www.instagram.com/buckscountycuriartsity",
-    "chairish": "https://www.chairish.com/shop/buckscountycuriartsity"
+    "threads": "https://www.threads.com/@buckscountycuriartsity",
+    "facebook": "https://www.facebook.com/profile.php?id=61572132181405",
+    "chairish": "https://www.chairish.com/shop/buckscountycuriartsity",
+    "etsy": "https://www.etsy.com/shop/BucksCtyCuriARTsity"
   },
   "maps": {
     "apple": "https://maps.apple.com/place?q=Darberry%27s%20Antiques&auid=1397877729542252910&address=80%20Lambert%20Ln,%20Lambertville,%20NJ%20%2008530,%20United%20States&ll=40.3684354,-74.94773",
