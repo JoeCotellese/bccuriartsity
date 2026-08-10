@@ -88,6 +88,7 @@ medium: Oil on canvas
 year: c. 1920
 sold: false
 image: /images/harbor-oil.jpg
+listingUrl: https://www.chairish.com/product/some-listing
 ---
 
 A few sentences describing the piece. This shows on the piece's own page.
@@ -99,6 +100,10 @@ A few sentences describing the piece. This shows on the piece's own page.
 - `image` — optional. Drop the photo in `src/images/` and point to it like
   `/images/harbor-oil.jpg`. No image? Leave the line out and it shows a titled
   placeholder tile.
+- `listingUrl` — optional. The Chairish or Etsy page where that piece is for
+  sale. If it's there, clicking the picture in the gallery takes visitors
+  straight to that listing in a new tab. Leave it out and the picture links to
+  the piece's own page on this site instead.
 
 The file name becomes the web address (`harbor-oil.md` → `/gallery/harbor-oil/`),
 so keep it short and lowercase with dashes. To remove a piece, delete its file.

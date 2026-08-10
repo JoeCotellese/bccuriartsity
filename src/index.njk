@@ -46,7 +46,11 @@ layout: base.njk
     {% if collections.gallery | length %}
     <div class="gallery-grid">
       {%- for item in collections.gallery | reverse %}
+      {% if item.data.listingUrl %}
+      <a class="gallery-item" href="{{ item.data.listingUrl }}" target="_blank" rel="noopener noreferrer">
+      {% else %}
       <a class="gallery-item" href="{{ item.url }}">
+      {% endif %}
         {% if item.data.image %}
           <img src="{{ item.data.image }}" alt="{{ item.data.title }}" loading="lazy">
         {% else %}
