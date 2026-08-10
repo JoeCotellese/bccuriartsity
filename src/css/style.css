@@ -80,6 +80,18 @@ h1, h2, h3, .nav-logo, .contact-block h3 {
 }
 .nav-links a:hover { color: var(--forest-green); }
 
+/* "Shop Online" nav item — Pico's <details class="dropdown"> pattern, restyled
+   to match the rest of the nav links (they're plain <a>s; this is a summary). */
+.nav-links details.dropdown { margin: 0; }
+.nav-links details.dropdown summary {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.nav-links details.dropdown summary:hover { color: var(--forest-green); }
+.nav-links details.dropdown ul { right: 0; min-width: 140px; font-size: 0.78rem; }
+
 /* Sections share a top rule, like the mockup. */
 main > section { padding-block: 5rem; border-top: 1px solid var(--rule); }
 main > section:first-child { border-top: none; }
@@ -88,6 +100,12 @@ main > section:first-child { border-top: none; }
 .hero { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
 .hero h1 { font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 1.15; margin-bottom: 1.5rem; }
 .hero p { color: var(--taupe); }
+.hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 1.5rem; }
+/* Outside <nav>, Pico's dropdown defaults to a full-width block (built for
+   select-style menus); pull it back to a compact button matching the primary CTA. */
+.hero-ctas .cta-shop-online { display: inline-block; width: auto; margin: 0; }
+.hero-ctas .cta-shop-online summary { display: inline-block; width: auto; }
+.hero-ctas .cta-shop-online ul { right: auto; left: 0; min-width: 160px; }
 .hero-media {
   order: -1;
   aspect-ratio: 3/4;
@@ -166,6 +184,7 @@ main > section:first-child { border-top: none; }
   .nav-logo { font-size: 1.1rem; }
   .nav-links { gap: 2rem; flex-wrap: nowrap; }
   .nav-links a { font-size: 0.75rem; }
+  .nav-links details.dropdown summary { font-size: 0.75rem; }
   .hero { grid-template-columns: 1fr 1fr; gap: 4rem; min-height: 80vh; }
   .hero-media { order: 0; }
 }

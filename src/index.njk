@@ -13,17 +13,16 @@ layout: base.njk
         <p class="section-label">{{ hero.data.label }}</p>
         <h1>{{ hero.data.headline }}</h1>
         {{ hero.templateContent | safe }}
-        <p>
+        <div class="hero-ctas">
           <a href="{{ hero.data.cta_href }}" role="button">{{ hero.data.cta_text }}</a>
-          {# TEMPLATE WORK NEEDED: Second CTA — Shop Online dropdown with Chairish and Etsy #}
-          {# <details role="button" class="cta-shop-online">
-               <summary>{{ hero.data.cta2_text }}</summary>
-               <ul>
-                 <li><a href="{{ hero.data.cta2_href_chairish }}" target="_blank" rel="noopener noreferrer">Chairish</a></li>
-                 <li><a href="{{ hero.data.cta2_href_etsy }}" target="_blank" rel="noopener noreferrer">Etsy</a></li>
-               </ul>
-             </details> #}
-        </p>
+          <details class="dropdown cta-shop-online">
+            <summary role="button" class="outline">{{ hero.data.cta2_text }}</summary>
+            <ul>
+              <li><a href="{{ hero.data.cta2_href_chairish }}" target="_blank" rel="noopener noreferrer">Chairish</a></li>
+              <li><a href="{{ hero.data.cta2_href_etsy }}" target="_blank" rel="noopener noreferrer">Etsy</a></li>
+            </ul>
+          </details>
+        </div>
       </div>
       <div class="hero-media">
         <span>Hi! Featured piece</span>
