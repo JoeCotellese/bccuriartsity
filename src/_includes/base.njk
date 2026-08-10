@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title or site.name }}</title>
+  <title>{{ title or "Bucks County CuriARTsity — Art, Décor, Rare Books & Curious Objects" }}</title>
   <meta name="description" content="{{ description or site.description }}">
 
   {# Favicon — SVG for modern browsers, PNG fallback. #}
@@ -18,12 +18,12 @@
   {# Open Graph / Twitter — link previews when shared. baseUrl makes these absolute, as both specs require. #}
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{{ site.name }}">
-  <meta property="og:title" content="{{ title or site.name }}">
+  <meta property="og:title" content="{{ title or 'Bucks County CuriARTsity — Art, Décor, Rare Books & Curious Objects' }}">
   <meta property="og:description" content="{{ description or site.description }}">
   <meta property="og:url" content="{{ baseUrl }}{{ page.url }}">
   <meta property="og:image" content="{{ baseUrl }}/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ title or site.name }}">
+  <meta name="twitter:title" content="{{ title or 'Bucks County CuriARTsity — Art, Décor, Rare Books & Curious Objects' }}">
   <meta name="twitter:description" content="{{ description or site.description }}">
   <meta name="twitter:image" content="{{ baseUrl }}/images/og-image.png">
 
@@ -77,6 +77,8 @@
           <li><a href="/#about">About</a></li>
           <li><a href="/#gallery">Gallery</a></li>
           <li><a href="/#contact">Find Me</a></li>
+          {# TEMPLATE WORK NEEDED: Add Shop Online nav item as fifth item at equal visual weight #}
+          {# <li><a href="#" class="nav-shop-online">Shop Online</a></li> #}
         </ul>
       </nav>
     </div>
@@ -86,16 +88,15 @@
     {{ content | safe }}
   </main>
 
-  {# The "Find Me In Person" contact block doubles as the site footer. #}
   <footer id="contact" class="contact">
     <div class="container">
-      <p class="section-label">Visit</p>
-      <h2>Find Me In Person</h2>
-      <p>I'm in residence at {{ site.address.locatedWithin }} in {{ site.address.city }}, {{ site.address.state }}. That's where you'll find the real magic.</p>
+      <p class="section-label">Find Me</p>
+      <h2>Come Find Me</h2>
+      <p>I have a booth at {{ site.address.locatedWithin }} in {{ site.address.city }}, {{ site.address.state }} — and an online shop that ships anywhere.</p>
 
       <div class="contact-grid">
         <div class="contact-block">
-          <h3>Location</h3>
+          <h3>In Person</h3>
           <address>
             <strong>{{ site.address.locatedWithin }}</strong><br>
             {{ site.address.street }}<br>
@@ -121,20 +122,9 @@
             </tr>
             {%- endfor %}
           </table>
+          <p><small>Hours are Darberry's hours and subject to change. <a href="https://darberrysantiques.com/" target="_blank" rel="noopener noreferrer">Check Darberry's website</a> for updates.</small></p>
         </div>
 
         <div class="contact-block">
-          <h3>Also Online</h3>
-          <p>Follow my work and discoveries, or shop the collection from home.</p>
-          <div class="social-links">
-            {% if site.social.instagram %}<a href="{{ site.social.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>{% endif %}
-            {% if site.social.chairish %}<a href="{{ site.social.chairish }}" target="_blank" rel="noopener noreferrer">Shop on Chairish</a>{% endif %}
-          </div>
-        </div>
-      </div>
-
-      <p class="contact__signoff">&copy; {{ "" | currentYear }} {{ site.name }} &middot; {{ site.address.city }}, {{ site.address.state }}</p>
-    </div>
-  </footer>
-</body>
-</html>
+          <h3>Online</h3>
+          <p>Shop
