@@ -1,9 +1,11 @@
 ---
 key: hero
-label: "Art · Décor · Rare Books"
-headline: "For People Building Interesting Spaces"
-cta_text: "Visit Me In Person"
-cta_href: "#contact"
+label: "Art · Décor · Mid-Century Furniture · Rare Books"
+headline: "Curious finds for curious minds."
+cta_text: "Visit My Booth at Darberry's"
+cta_href: "/visit/"
+cta2_text: "Shop Online"
+cta2_href_chairish: "https://www.chairish.com/shop/buckscountycuriartsity"
+cta2_href_etsy: "https://www.etsy.com/shop/BucksCtyCuriARTsity"
 ---
-Curated pieces with a story — art, decorative objects, and rare
-illustrated books for the curious collector.
+Original art, prints, mid-century furniture, rare and vintage books, and curious objects — in Lambertville, and online.
