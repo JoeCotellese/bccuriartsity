@@ -15,4 +15,4 @@ We all contain multitudes. Your space should, too.
 
 ## About Me
 
-I'm Trish Sammer, a lifelong writer, seeker, and genuine oddball. I've made my living as a journalist, writer, and editor for the past buncha years. I started accidentally collecting art in 2021. After being repeatedly told that I had an eye for it, I started reselling art, antiques, and old books online in 2024. I opened my first vendor space in April 2026 at Darberry's Antiques in Lambertville, NJ.
+I'm Trish Sammer, a lifelong writer, seeker, and genuine oddball. I've made my living as a journalist, writer, and editor for the past buncha years. I started accidentally collecting art in 2021. After being repeatedly told that I had "an eye," I started reselling art, antiques, and old books online in 2024. I opened my first vendor space in April 2026 at Darberry's Antiques in Lambertville, NJ.
