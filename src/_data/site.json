@@ -13,36 +13,32 @@
   "email": "trishsammer@gmail.com",
   "hours": [
     {
-      "days": "Sunday",
-      "time": "11:00 AM - 5:00 PM"
-    },
-    {
       "days": "Monday",
       "time": "11:00 AM - 4:00 PM"
     },
     {
-      "days": "Tuesday - Thursday",
+      "days": "Tuesday - Wednesday",
       "time": "Closed"
     },
     {
-      "days": "Friday",
+      "days": "Thursday",
       "time": "11:00 AM - 4:00 PM"
     },
     {
-      "days": "Saturday",
+      "days": "Friday - Sunday",
       "time": "11:00 AM - 5:00 PM"
     }
   ],
   "hoursSchema": [
     {
-      "days": ["Sunday", "Saturday"],
-      "opens": "11:00",
-      "closes": "17:00"
-    },
-    {
-      "days": ["Monday", "Friday"],
+      "days": ["Monday", "Thursday"],
       "opens": "11:00",
       "closes": "16:00"
+    },
+    {
+      "days": ["Friday", "Saturday", "Sunday"],
+      "opens": "11:00",
+      "closes": "17:00"
     }
   ],
   "social": {
