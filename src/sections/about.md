@@ -1,7 +1,7 @@
 ---
 key: about
 label: "My Story"
-heading: "Why I Do This"
+heading: "Why I do this"
 ---
 I believe that interesting people thrive in interesting spaces.
 
@@ -13,7 +13,7 @@ I hunt for the pieces that feel rare and thoughtful — objects with a real make
 
 We all contain multitudes. Your space should, too.
 
-## About Me
+## About me
 
 <img src="/images/trish-headshot.jpg" alt="Trish Sammer" class="headshot">
 
