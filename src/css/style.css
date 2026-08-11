@@ -61,24 +61,81 @@ h1, h2, h3, .nav-logo, .contact-block h3 {
 }
 /* Header breaks out of Pico's centered container to span the full viewport. */
 .nav-bar .container { max-width: none; }
-/* Mobile-first: stack the wordmark above a centered nav row so the links never
-   collide with the logo. The desktop layer switches this back to a single row. */
+/* Mobile-first: wordmark left, hamburger right. Desktop switches to an inline row. */
 .nav-bar .container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: space-between;
+  gap: 1rem;
   padding-block: 0.9rem;
 }
 .nav-logo { font-size: 1.05rem; text-decoration: none; color: var(--deep-charcoal); }
 .nav-logo span { color: var(--forest-green); }
-.nav-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.25rem; list-style: none; margin: 0; padding: 0; }
+
+/* HAMBURGER (mobile) — a <details> disclosure; summary is the button. */
+.nav-menu { margin: 0; }
+.nav-toggle {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: -0.5rem -0.5rem -0.5rem 0; /* enlarge tap target without shifting layout */
+  cursor: pointer;
+  color: var(--deep-charcoal);
+}
+.nav-toggle::-webkit-details-marker { display: none; } /* hide default triangle (WebKit) */
+.nav-toggle::marker { content: ""; }                   /* hide default triangle (others) */
+.nav-toggle::after { display: none; }                  /* hide Pico's accordion chevron */
+.nav-toggle__bars, .nav-toggle__bars::before, .nav-toggle__bars::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.nav-toggle__bars { position: relative; }
+.nav-toggle__bars::before, .nav-toggle__bars::after { content: ""; position: absolute; left: 0; }
+.nav-toggle__bars::before { top: -7px; }
+.nav-toggle__bars::after { top: 7px; }
+/* Morph bars into an X while the menu is open. */
+.nav-menu[open] .nav-toggle__bars { background: transparent; }
+.nav-menu[open] .nav-toggle__bars::before { top: 0; transform: rotate(45deg); }
+.nav-menu[open] .nav-toggle__bars::after { top: 0; transform: rotate(-45deg); }
+.nav-toggle:focus-visible { outline: 2px solid var(--forest-green); outline-offset: 3px; border-radius: 3px; }
+
+/* Open menu drops as a full-width panel below the sticky bar. */
+.nav-menu nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 100;
+  background: var(--warm-cream);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
+  padding: 1.25rem 1rem 1.75rem;
+}
+.nav-links { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem; width: 100%; list-style: none; margin: 0; padding: 0; }
+/* In the mobile panel, let the Shop Online submenu flow inline rather than
+   float as an absolute popover. */
+.nav-menu nav .nav-links details.dropdown ul {
+  position: static;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  text-align: center;
+}
 .nav-links a {
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--taupe);
   text-decoration: none;
+  white-space: nowrap;
 }
 .nav-links a:hover { color: var(--forest-green); }
 
@@ -114,6 +171,9 @@ h1, h2, h3, .nav-logo, .contact-block h3 {
 
 /* Sections share a top rule, like the mockup. */
 main > section { padding-block: 5rem; border-top: 1px solid var(--rule); }
+/* Offset anchor jumps so the target heading clears the sticky header. */
+main > section { scroll-margin-top: 5.5rem; }
+@media (min-width: 769px) { main > section { scroll-margin-top: 4.5rem; } }
 main > section:first-child { border-top: none; }
 /* Hero sits directly under the header; trim its top padding so the headline
    isn't pushed down — most noticeable under the taller mobile header. */
@@ -235,16 +295,32 @@ main > section:first-child { border-top: none; }
 
 /* Desktop layer — mobile-first base above is progressively enhanced here. */
 @media (min-width: 769px) {
-  .nav-bar .container {
-    padding-inline: 2.5rem;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-  }
+  .nav-bar .container { padding-inline: 2.5rem; }
   .nav-logo { font-size: 1.1rem; }
-  .nav-links { gap: 2rem; flex-wrap: nowrap; }
+  /* No hamburger on desktop: hide the toggle and force the links inline,
+     regardless of the <details> open state. */
+  .nav-toggle { display: none; }
+  .nav-menu::details-content { content-visibility: visible; } /* Chromium's details wrapper */
+  .nav-menu nav {
+    display: block;
+    position: static;
+    background: none;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+  .nav-links { flex-direction: row; align-items: center; flex-wrap: nowrap; gap: 2rem; }
+  .nav-links li { flex-shrink: 0; }
   .nav-links a { font-size: 0.75rem; }
   .nav-links details.dropdown summary { font-size: 0.75rem; }
+  /* Restore the desktop popover for the Shop Online submenu. */
+  .nav-menu nav .nav-links details.dropdown ul {
+    position: absolute;
+    right: 0;
+    margin: 0;
+    text-align: left;
+  }
   .hero { grid-template-columns: 1fr 1fr; gap: 4rem; min-height: 80vh; }
   .hero-media { order: 0; }
   .headshot { float: left; width: 160px; height: 160px; margin: 0 2rem 1rem 0; }
