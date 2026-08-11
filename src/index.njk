@@ -46,17 +46,20 @@ layout: base.njk
     {% if collections.gallery | length %}
     <div class="gallery-grid">
       {%- for item in collections.gallery | reverse %}
-      {% if item.data.listingUrl %}
-      <a class="gallery-item" href="{{ item.data.listingUrl }}" target="_blank" rel="noopener noreferrer">
-      {% else %}
-      <a class="gallery-item" href="{{ item.url }}">
-      {% endif %}
-        {% if item.data.image %}
+      {% set external = item.data.listingUrl %}
+      <a class="gallery-item" href="{{ external or item.url }}"{% if external %} target="_blank" rel="noopener noreferrer" aria-label="{{ item.data.title }} — opens in a new tab on Chairish"{% endif %}>
+        <span class="gallery-item__frame">
+          {% if item.data.image %}
           <img src="{{ item.data.image }}" alt="{{ item.data.title }}" loading="lazy">
-        {% else %}
+          {% else %}
           <span class="gallery-item__placeholder">{{ item.data.title }}</span>
-        {% endif %}
-        {% if item.data.sold %}<span class="gallery-item__sold">Sold</span>{% endif %}
+          {% endif %}
+          {% if item.data.sold %}<span class="gallery-item__sold">Sold</span>{% endif %}
+        </span>
+        <span class="gallery-item__caption">
+          <span class="gallery-item__title">{{ item.data.title }}</span>
+          <span class="gallery-item__meta">{{ item.data.medium }}{% if item.data.year %} · {{ item.data.year }}{% endif %}{% if external %} <span class="gallery-item__ext" aria-hidden="true">↗</span>{% endif %}</span>
+        </span>
       </a>
       {%- endfor %}
     </div>
