@@ -5,7 +5,7 @@
   --forest-green: #2d5016;
   --deep-charcoal: #2c2c2c;
   --warm-cream: #f8f7f5;
-  --taupe: #8b8680;
+  --taupe: #706b63; /* darkened from #8b8680 to meet WCAG AA (~5:1) on the cream background */
   --rule: rgba(45, 80, 22, 0.12);
 
   /* Re-skin Pico with the mockup palette + fonts. */
@@ -61,16 +61,18 @@ h1, h2, h3, .nav-logo, .contact-block h3 {
 }
 /* Header breaks out of Pico's centered container to span the full viewport. */
 .nav-bar .container { max-width: none; }
+/* Mobile-first: stack the wordmark above a centered nav row so the links never
+   collide with the logo. The desktop layer switches this back to a single row. */
 .nav-bar .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0.6rem;
   padding-block: 0.9rem;
 }
 .nav-logo { font-size: 1.05rem; text-decoration: none; color: var(--deep-charcoal); }
 .nav-logo span { color: var(--forest-green); }
-.nav-links { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; margin: 0; padding: 0; }
+.nav-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.25rem; list-style: none; margin: 0; padding: 0; }
 .nav-links a {
   font-size: 0.68rem;
   letter-spacing: 0.08em;
@@ -83,18 +85,40 @@ h1, h2, h3, .nav-logo, .contact-block h3 {
 /* "Shop Online" nav item — Pico's <details class="dropdown"> pattern, restyled
    to match the rest of the nav links (they're plain <a>s; this is a summary). */
 .nav-links details.dropdown { margin: 0; }
+/* Pico wraps a bare <summary> in a select-style box; strip it so "Shop Online"
+   reads as a plain nav link like the others (the caret ::after stays). */
 .nav-links details.dropdown summary {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--taupe);
+  border: none;
+  background: none;
+  padding: 0;
 }
 .nav-links details.dropdown summary:hover { color: var(--forest-green); }
+.nav-links details.dropdown summary:focus { box-shadow: none; }
 .nav-links details.dropdown ul { right: 0; min-width: 140px; font-size: 0.78rem; }
+
+/* Keyboard focus — Pico's default outline is suppressed by the color overrides
+   above, so restore a visible focus ring for nav links and the dropdown. */
+.nav-links a:focus-visible,
+.nav-links details.dropdown summary:focus-visible {
+  outline: 2px solid var(--forest-green);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 
 /* Sections share a top rule, like the mockup. */
 main > section { padding-block: 5rem; border-top: 1px solid var(--rule); }
 main > section:first-child { border-top: none; }
+/* Hero sits directly under the header; trim its top padding so the headline
+   isn't pushed down — most noticeable under the taller mobile header. */
+#home { padding-top: 2rem; }
+@media (min-width: 769px) { #home { padding-top: 3rem; } }
 
 /* HERO — mobile-first: single column, image on top. Two-column added at the desktop breakpoint. */
 .hero { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
@@ -117,7 +141,11 @@ main > section:first-child { border-top: none; }
 .hero-media img { width: 100%; height: 100%; object-fit: cover; }
 .hero-media span { font-family: 'Crimson Text', serif; font-style: italic; color: rgba(255,255,255,0.5); }
 
-/* ABOUT — headshot sits above the bio paragraph on mobile, floats beside it at the desktop breakpoint. */
+/* ABOUT — cap the prose measure for readability; left edge stays aligned with
+   the other sections (not centered), so only the line length shortens. */
+#about h2,
+#about p { max-width: 68ch; }
+/* headshot sits above the bio paragraph on mobile, floats beside it at the desktop breakpoint. */
 .headshot {
   display: block;
   width: 140px;
@@ -136,22 +164,37 @@ main > section:first-child { border-top: none; }
   gap: 2rem;
   margin-top: 2.5rem;
 }
-.gallery-item {
+.gallery-item { display: block; text-decoration: none; color: inherit; }
+/* The image card; the caption sits below it, outside this framed box. */
+.gallery-item__frame {
   display: block;
-  aspect-ratio: 3/4;
   position: relative;
+  aspect-ratio: 3/4;
   overflow: hidden;
   border-radius: 6px;
-  background: #f0ebe3;
+  background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.gallery-item:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.12); }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-item:hover .gallery-item__frame { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.12); }
+/* contain (not cover) so tall pieces like the lamp aren't clipped; the white
+   tile lets the product shots' own white backgrounds blend into a clean grid. */
+.gallery-item img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1rem; }
 .gallery-item__placeholder {
   display: flex; align-items: center; justify-content: center; height: 100%;
   color: #999; font-size: 0.85rem; text-align: center; padding: 1rem;
 }
+/* Caption below the image card: piece title and medium/year. */
+.gallery-item__caption { display: block; padding-top: 0.85rem; }
+.gallery-item__title {
+  display: block;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--deep-charcoal);
+}
+.gallery-item__meta { display: block; font-size: 0.8rem; color: var(--taupe); margin-top: 0.1rem; }
+.gallery-item:hover .gallery-item__title { color: var(--forest-green); }
+.gallery-item__ext { font-size: 0.85em; }
 .gallery-item__sold {
   position: absolute; top: 0.75rem; right: 0.75rem;
   background: var(--deep-charcoal); color: var(--warm-cream);
@@ -192,7 +235,12 @@ main > section:first-child { border-top: none; }
 
 /* Desktop layer — mobile-first base above is progressively enhanced here. */
 @media (min-width: 769px) {
-  .nav-bar .container { padding-inline: 2.5rem; }
+  .nav-bar .container {
+    padding-inline: 2.5rem;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+  }
   .nav-logo { font-size: 1.1rem; }
   .nav-links { gap: 2rem; flex-wrap: nowrap; }
   .nav-links a { font-size: 0.75rem; }
