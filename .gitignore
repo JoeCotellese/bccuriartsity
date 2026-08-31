@@ -4,3 +4,4 @@ node_modules/
 .serena/
 
 .playwright-mcp/
+test-results/
