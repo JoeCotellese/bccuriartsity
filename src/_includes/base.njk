@@ -71,23 +71,31 @@
   <header class="nav-bar">
     <div class="container">
       <a class="nav-logo" href="/#home">Bucks County <span>CuriARTsity</span></a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="/#home">Home</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#gallery">Gallery</a></li>
-          <li><a href="/#contact">Find Me</a></li>
-          <li>
-            <details class="dropdown">
-              <summary>Shop Online</summary>
-              <ul>
-                <li><a href="{{ site.social.chairish }}" target="_blank" rel="noopener noreferrer">Chairish</a></li>
-                <li><a href="{{ site.social.etsy }}" target="_blank" rel="noopener noreferrer">Etsy</a></li>
-              </ul>
-            </details>
-          </li>
-        </ul>
-      </nav>
+      {# CSS-only responsive nav: a <details> disclosure is the hamburger on
+         mobile (keyboard-accessible, no JS); the desktop layer force-shows the
+         links inline and hides the toggle. #}
+      <details class="nav-menu">
+        <summary class="nav-toggle" aria-label="Menu">
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+        </summary>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="/#home">Home</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#gallery">Gallery</a></li>
+            <li><a href="/#contact">Find Me</a></li>
+            <li>
+              <details class="dropdown">
+                <summary>Shop Online</summary>
+                <ul>
+                  <li><a href="{{ site.social.chairish }}" target="_blank" rel="noopener noreferrer">Chairish</a></li>
+                  <li><a href="{{ site.social.etsy }}" target="_blank" rel="noopener noreferrer">Etsy</a></li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </nav>
+      </details>
     </div>
   </header>
 
@@ -148,5 +156,26 @@
       <p class="contact__signoff">&copy; {{ "" | currentYear }} {{ site.name }} &middot; {{ site.address.city }}, {{ site.address.state }}</p>
     </div>
   </footer>
+
+  {# Progressive enhancement: close the mobile nav (a <details> disclosure) after
+     picking a link, on Escape, or when tapping outside it. Without JS the menu
+     still opens and closes via its own toggle — this just avoids the panel
+     lingering over the section you jumped to. #}
+  <script>
+    (function () {
+      var menu = document.querySelector('.nav-menu');
+      if (!menu) return;
+      var close = function () { menu.removeAttribute('open'); };
+      menu.querySelectorAll('.nav-links a').forEach(function (a) {
+        a.addEventListener('click', close);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menu.open) close();
+      });
+      document.addEventListener('click', function (e) {
+        if (menu.open && !menu.contains(e.target)) close();
+      });
+    })();
+  </script>
 </body>
 </html>
