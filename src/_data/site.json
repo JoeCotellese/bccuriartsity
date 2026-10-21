@@ -1,42 +1,37 @@
 {
   "name": "Bucks County CuriARTsity",
   "tagline": "Curious finds for curious minds.",
-  "description": "Original art, prints, mid-century furniture, rare and vintage books, and curious objects. Visit my booth at Darberry's Antiques in Lambertville, NJ — or shop online.",
+  "description": "Original art, prints, mid-century furniture, rare and vintage books, and curious objects. Find my favorite pieces at Umbrella Antiques & Modern in Hopewell, NJ, or shop online.",
   "address": {
-    "locatedWithin": "Darberry's Antiques",
-    "street": "80 Lambert Ln",
-    "city": "Lambertville",
+    "locatedWithin": "Umbrella Antiques & Modern",
+    "locatedWithinUrl": "https://www.umbrelladecor.com/",
+    "building": "Tomato Factory, 2nd Floor",
+    "street": "2 Somerset Street",
+    "city": "Hopewell",
     "state": "NJ",
-    "zip": "08530"
+    "zip": "08525"
   },
   "phone": "(908) 329-4446",
   "email": "trishsammer@gmail.com",
   "hours": [
     {
-      "days": "Monday",
-      "time": "11:00 AM - 4:00 PM"
-    },
-    {
-      "days": "Tuesday - Wednesday",
+      "days": "Monday - Tuesday",
       "time": "Closed"
     },
     {
-      "days": "Thursday",
-      "time": "11:00 AM - 4:00 PM"
-    },
-    {
-      "days": "Friday - Sunday",
+      "days": "Wednesday - Sunday",
       "time": "11:00 AM - 5:00 PM"
     }
   ],
   "hoursSchema": [
     {
-      "days": ["Monday", "Thursday"],
-      "opens": "11:00",
-      "closes": "16:00"
-    },
-    {
-      "days": ["Friday", "Saturday", "Sunday"],
+      "days": [
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
       "opens": "11:00",
       "closes": "17:00"
     }
@@ -49,8 +44,8 @@
     "etsy": "https://www.etsy.com/shop/BucksCtyCuriARTsity"
   },
   "maps": {
-    "apple": "https://maps.apple.com/place?q=Darberry%27s%20Antiques&auid=1397877729542252910&address=80%20Lambert%20Ln,%20Lambertville,%20NJ%20%2008530,%20United%20States&ll=40.3684354,-74.94773",
-    "google": "https://www.google.com/maps/place/?q=place_id:ChIJGSeNGRL_w4kRX_IX-uurq0M",
-    "waze": "https://waze.com/ul?ll=40.3684354,-74.94773&navigate=yes"
+    "apple": "https://maps.apple.com/?q=Umbrella%20Antiques%20%26%20Modern&address=2%20Somerset%20Street%2C%20Hopewell%2C%20NJ%2008525",
+    "google": "https://www.google.com/maps/search/?api=1&query=Umbrella%20Antiques%20%26%20Modern%2C%202%20Somerset%20Street%2C%20Hopewell%2C%20NJ%2008525",
+    "waze": "https://waze.com/ul?q=2%20Somerset%20Street%2C%20Hopewell%2C%20NJ%2008525&navigate=yes"
   }
 }
