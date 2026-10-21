@@ -8,4 +8,4 @@ cta2_text: "Shop online"
 cta2_href_chairish: "https://www.chairish.com/shop/buckscountycuriartsity"
 cta2_href_etsy: "https://www.etsy.com/shop/BucksCtyCuriARTsity"
 ---
-Original art, high-quality prints, mid-century furniture, rare and vintage books, and curious objects — at price points for every budget. Shop at my vendor space in Hopewell, NJ or online.
+Original art, prints, furniture, books, and curious objects. Find some of my favorites at Umbrella Antiques & Modern in Hopewell, NJ, or shop online.
