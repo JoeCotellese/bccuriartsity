@@ -8,7 +8,7 @@ eleventyExcludeFromCollections: true
 
 > {{ site.description | safe }}
 
-{{ site.tagline | safe }}. Located inside {{ site.address.locatedWithin }} at {{ site.address.street }}, {{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}.
+{{ site.tagline | safe }}. Located inside {{ site.address.locatedWithin | safe }} at {{ site.address.building + ', ' if site.address.building }}{{ site.address.street }}, {{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}.
 
 ## Pages
 
