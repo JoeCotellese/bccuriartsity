@@ -47,7 +47,8 @@ layout: base.njk
     <div class="gallery-grid">
       {%- for item in collections.gallery | reverse %}
       {% set external = item.data.listingUrl %}
-      <a class="gallery-item" href="{{ external or item.url }}"{% if external %} target="_blank" rel="noopener noreferrer" aria-label="{{ item.data.title }} — opens in a new tab on Chairish"{% endif %}>
+      {% if external and "1stdibs.com" in external %}{% set storeName = "1stDibs" %}{% elif external and "etsy.com" in external %}{% set storeName = "Etsy" %}{% else %}{% set storeName = "Chairish" %}{% endif %}
+      <a class="gallery-item" href="{{ external or item.url }}"{% if external %} target="_blank" rel="noopener noreferrer" aria-label="{{ item.data.title }} — opens in a new tab on {{ storeName }}"{% endif %}>
         <span class="gallery-item__frame">
           {% if item.data.image %}
           <img src="{{ item.data.image }}" alt="{{ item.data.title }}" loading="lazy">
