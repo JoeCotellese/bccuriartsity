@@ -255,6 +255,12 @@ main > section:first-child { border-top: none; }
 .gallery-item__meta { display: block; font-size: 0.8rem; color: var(--taupe); margin-top: 0.1rem; }
 .gallery-item:hover .gallery-item__title { color: var(--forest-green); }
 .gallery-item__ext { font-size: 0.85em; }
+/* Who sells the piece (Umbrella vs. my own shops). Text, not color, carries it. */
+.gallery-item__seller {
+  display: block; margin-top: 0.3rem;
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--forest-green);
+}
 .gallery-item__sold {
   position: absolute; top: 0.75rem; right: 0.75rem;
   background: var(--deep-charcoal); color: var(--warm-cream);
@@ -277,6 +283,13 @@ main > section:first-child { border-top: none; }
 .hours td:first-child { padding-right: 2rem; }
 .hours td:last-child { white-space: nowrap; text-align: right; }
 .social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.contact .hours { margin-block: 1.25rem 0.5rem; }
+/* Social links sit on their own line, apart from the two shopping columns. */
+.contact-follow {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: baseline;
+  margin-top: 3rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(248,247,245,0.15);
+}
 
 /* Copyright sign-off at the bottom of the contact/footer band. */
 .contact__signoff {

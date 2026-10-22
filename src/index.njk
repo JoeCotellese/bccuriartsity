@@ -47,8 +47,9 @@ layout: base.njk
     <div class="gallery-grid">
       {%- for item in collections.gallery | reverse %}
       {% set external = item.data.listingUrl %}
-      {% if external and "1stdibs.com" in external %}{% set storeName = "1stDibs" %}{% elif external and "etsy.com" in external %}{% set storeName = "Etsy" %}{% else %}{% set storeName = "Chairish" %}{% endif %}
-      <a class="gallery-item" href="{{ external or item.url }}"{% if external %} target="_blank" rel="noopener noreferrer" aria-label="{{ item.data.title }} — opens in a new tab on {{ storeName }}"{% endif %}>
+      {# Who sells it: 1stDibs listings are Umbrella's; Chairish and Etsy are my own shops. #}
+      {% if external and "1stdibs.com" in external %}{% set storeName = "1stDibs" %}{% set seller = "via " + site.address.locatedWithinShort %}{% elif external and "etsy.com" in external %}{% set storeName = "Etsy" %}{% set seller = "My Etsy shop" %}{% else %}{% set storeName = "Chairish" %}{% set seller = "My Chairish shop" %}{% endif %}
+      <a class="gallery-item" href="{{ external or item.url }}"{% if external %} target="_blank" rel="noopener noreferrer" aria-label="{{ item.data.title }} — {{ seller }}, opens in a new tab on {{ storeName }}"{% endif %}>
         <span class="gallery-item__frame">
           {% if item.data.image %}
           <img src="{{ item.data.image }}" alt="{{ item.data.title }}" loading="lazy">
@@ -59,7 +60,8 @@ layout: base.njk
         </span>
         <span class="gallery-item__caption">
           <span class="gallery-item__title">{{ item.data.title }}</span>
-          <span class="gallery-item__meta">{{ item.data.medium }}{% if item.data.year %} · {{ item.data.year }}{% endif %}{% if external %} <span class="gallery-item__ext" aria-hidden="true">↗</span>{% endif %}</span>
+          <span class="gallery-item__meta">{{ item.data.medium }}{% if item.data.year %} · {{ item.data.year }}{% endif %}</span>
+          {% if external %}<span class="gallery-item__seller">{{ seller }} <span class="gallery-item__ext" aria-hidden="true">↗</span></span>{% endif %}
         </span>
       </a>
       {%- endfor %}

@@ -1,4 +1,4 @@
-{# ABOUTME: Base HTML layout — fonts, Pico stylesheet, sticky nav, and the "Find Me In Person" contact block that doubles as the footer. #}
+{# ABOUTME: Base HTML layout — fonts, Pico stylesheet, sticky nav, and the "Find Me" contact block (split by seller: Umbrella vs. my own shops) that doubles as the footer. #}
 {# ABOUTME: Wraps every page; each page's sections are injected via {{ content }}. #}
 <!DOCTYPE html>
 <html lang="en">
@@ -106,30 +106,21 @@
   <footer id="contact" class="contact">
     <div class="container">
       <p class="section-label">Find Me</p>
-      <h2>Shop in person or online</h2>
-      <p>Some of my favorite pieces are at {{ site.address.locatedWithin }} in {{ site.address.city }}, {{ site.address.state }}, and in their online shops. You can also buy from me directly on Chairish and Etsy.</p>
+      <h2>Where to find my pieces</h2>
+      <p>I sell through {{ site.address.locatedWithin }} in {{ site.address.city }}, {{ site.address.state }}, both in their showroom and in their online shops. I also sell directly through my own shops on Chairish and Etsy.</p>
 
+      {# Two equal columns split by who is selling, not by place. Stacks on
+         mobile with the Umbrella column first (someone nearby looking for the door). #}
       <div class="contact-grid">
         <div class="contact-block">
-          <h3>In person</h3>
+          <h3>Through {{ site.address.locatedWithin }}</h3>
+          <p>See my pieces in person, or shop them through {{ site.address.locatedWithinShort }} online.</p>
           <address>
-            <strong>{{ site.address.locatedWithin }}</strong><br>
             {% if site.address.building %}{{ site.address.building }}<br>{% endif %}
             {{ site.address.street }}<br>
             {{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}<br><br>
-            <a href="tel:{{ site.phone | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') }}">{{ site.phone }}</a>
+            {{ site.address.locatedWithinShort }}: <a href="tel:{{ site.phone | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') }}">{{ site.phone }}</a>
           </address>
-          {% if site.maps %}
-          <p class="social-links">
-            <a href="{{ site.maps.apple }}" target="_blank" rel="noopener noreferrer">Apple Maps</a>
-            <a href="{{ site.maps.google }}" target="_blank" rel="noopener noreferrer">Google Maps</a>
-            <a href="{{ site.maps.waze }}" target="_blank" rel="noopener noreferrer">Waze</a>
-          </p>
-          {% endif %}
-        </div>
-
-        <div class="contact-block">
-          <h3>Hours</h3>
           <table class="hours">
             {%- for slot in site.hours %}
             <tr>
@@ -139,22 +130,38 @@
             {%- endfor %}
           </table>
           <p><small>Hours are {{ site.address.locatedWithin }}'s hours and subject to change. <a href="{{ site.address.locatedWithinUrl }}" target="_blank" rel="noopener noreferrer">Check their website</a> for updates.</small></p>
+          {% if site.maps %}
+          <p class="social-links">
+            <a href="{{ site.maps.apple }}" target="_blank" rel="noopener noreferrer">Apple Maps</a>
+            <a href="{{ site.maps.google }}" target="_blank" rel="noopener noreferrer">Google Maps</a>
+            <a href="{{ site.maps.waze }}" target="_blank" rel="noopener noreferrer">Waze</a>
+          </p>
+          {% endif %}
+          {% if site.address.locatedWithinOnline %}
+          <p class="social-links">
+            <a href="{{ site.address.locatedWithinOnline }}" target="_blank" rel="noopener noreferrer">Shop {{ site.address.locatedWithinShort }} on 1stDibs ↗</a>
+          </p>
+          {% endif %}
         </div>
 
         <div class="contact-block">
-          <h3>Online</h3>
-          <p>Shop the collection, or follow along for new finds as they come in.</p>
-          <div class="social-links">
-            <a href="{{ site.social.chairish }}" target="_blank" rel="noopener noreferrer">Shop on Chairish</a>
-            <a href="{{ site.social.etsy }}" target="_blank" rel="noopener noreferrer">Shop on Etsy</a>
-            <a href="{{ site.social.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="{{ site.social.threads }}" target="_blank" rel="noopener noreferrer">Threads</a>
-            <a href="{{ site.social.facebook }}" target="_blank" rel="noopener noreferrer">Facebook</a>
-          </div>
+          <h3>Directly from me</h3>
+          <p>Buy from my own shops. They ship anywhere.</p>
+          <p class="social-links">
+            <a href="{{ site.social.chairish }}" target="_blank" rel="noopener noreferrer">Shop on Chairish ↗</a>
+            <a href="{{ site.social.etsy }}" target="_blank" rel="noopener noreferrer">Shop on Etsy ↗</a>
+          </p>
+          <p>Questions about a piece? <a href="mailto:{{ site.email }}">Email me</a>.</p>
         </div>
       </div>
 
-      <p class="contact__signoff">&copy; {{ "" | currentYear }} {{ site.name }} &middot; {{ site.address.city }}, {{ site.address.state }}</p>
+      <p class="contact-follow"><span>Follow along for new finds:</span>
+        <a href="{{ site.social.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="{{ site.social.threads }}" target="_blank" rel="noopener noreferrer">Threads</a>
+        <a href="{{ site.social.facebook }}" target="_blank" rel="noopener noreferrer">Facebook</a>
+      </p>
+
+      <p class="contact__signoff">&copy; {{ "" | currentYear }} {{ site.name }}</p>
     </div>
   </footer>
 

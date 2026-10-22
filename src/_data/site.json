@@ -4,7 +4,9 @@
   "description": "Original art, prints, midcentury furniture, rare and vintage books, and curious objects. Find my favorite pieces at Umbrella Antiques & Modern in Hopewell, NJ, or shop online.",
   "address": {
     "locatedWithin": "Umbrella Antiques & Modern",
+    "locatedWithinShort": "Umbrella",
     "locatedWithinUrl": "https://www.umbrelladecor.com/",
+    "locatedWithinOnline": "https://umbrella.1stdibs.com/",
     "building": "Tomato Factory, 2nd Floor",
     "street": "2 Somerset Street",
     "city": "Hopewell",
