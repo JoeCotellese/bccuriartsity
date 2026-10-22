@@ -284,6 +284,8 @@ main > section:first-child { border-top: none; }
 .hours td:last-child { white-space: nowrap; text-align: right; }
 .social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
 .contact .hours { margin-block: 1.25rem 0.5rem; }
+/* Long email addresses wrap instead of running off a phone screen. */
+.contact-email { overflow-wrap: anywhere; }
 /* Social links sit on their own line, apart from the two shopping columns. */
 .contact-follow {
   display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: baseline;
