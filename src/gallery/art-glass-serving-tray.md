@@ -1,5 +1,5 @@
 ---
-title: Hand-Made Art Glass Serving Tray
+title: Handmade Art Glass Serving Tray
 date: 2026-10-16
 medium: Art glass
 year: 2000s

@@ -8,7 +8,7 @@ image: /images/pollo-tin-sculpture.jpg
 listingUrl: https://www.chairish.com/product/id/21377769
 ---
 
-A brutalist little rooster in tin and bronze, made by Mexican mid-century
+A brutalist little rooster in tin and bronze, made by Mexican midcentury
 artist Alexander Blazquez and signed on the bottom as "Pollo 5." Found at an
 estate on Philadelphia's Main Line, with just enough dents and patina in its
 feathers to prove it's lived a life. Equal parts sculpture and character.

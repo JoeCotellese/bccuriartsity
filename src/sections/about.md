@@ -5,7 +5,7 @@ heading: "Why I do this"
 ---
 I believe that interesting people thrive in interesting spaces.
 
-Mass market art and decor can be just fine. I've certainly bought plenty of it and liked it well enough. But the more time goes by, the more I want to create a home that feels eclectic and interesting and totally unexpected, just like me. I'm pretty unique.
+Mass-market art and décor can be just fine. I've certainly bought plenty of it and liked it well enough. But the more time goes by, the more I want to create a home that feels eclectic and interesting and totally unexpected, just like me. I'm pretty unique.
 
 I bet you are, too.
 
